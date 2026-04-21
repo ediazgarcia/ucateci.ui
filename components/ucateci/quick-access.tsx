@@ -199,7 +199,7 @@ export function QuickAccess() {
       className="relative -mt-10 md:-mt-16 lg:-mt-20 z-10"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl bg-card border border-border shadow-xl overflow-hidden">
+        <div className="surface-card overflow-hidden rounded-[1.75rem]">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-8 border-b border-border">
             <div>
               <div className="text-xs uppercase tracking-widest text-brand-red font-semibold mb-2">
@@ -219,7 +219,7 @@ export function QuickAccess() {
             <div
               role="tablist"
               aria-label="Perfiles de usuario"
-              className="inline-flex flex-wrap rounded-full bg-muted p-1 gap-1"
+              className="inline-flex flex-wrap gap-1 rounded-[1.25rem] bg-muted p-1"
             >
               {roles.map(({ key, label, icon: Icon }) => {
                 const active = role === key
@@ -244,56 +244,59 @@ export function QuickAccess() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-3xl border border-border bg-muted/40 p-6 text-brand-navy">
-            <div className="sm:flex sm:items-center sm:justify-between sm:gap-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-                  Campus y Alianzas
-                </p>
-                <h3 className="mt-3 text-2xl font-semibold text-brand-navy">
-                  Sedes, extensiones y colaboraciones estratégicas
-                </h3>
-                <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                  Accede a los campus de La Vega y Constanza, nuestros centros educativos aliados y las extensiones académicas de UCATECI.
-                </p>
-              </div>
-              <div className="mt-4 sm:mt-0">
-                <Button asChild className="rounded-full bg-brand-red text-accent-foreground hover:bg-brand-red/90">
-                  <Link href="#campus">Ver Campus y Alianzas</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 divide-x divide-y divide-border">
-            {items.map(({ title, desc, icon: Icon, href, tag }) => (
-              <a
-                key={title}
-                href={href}
-                className="group relative flex items-start gap-4 p-6 hover:bg-muted/60 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-inset"
-              >
-                <div className="h-11 w-11 shrink-0 rounded-lg bg-brand-navy/5 text-brand-navy flex items-center justify-center group-hover:bg-brand-red group-hover:text-accent-foreground transition-colors">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-brand-navy">{title}</h3>
-                    {tag && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider rounded-full bg-brand-gold/20 text-brand-navy px-2 py-0.5">
-                        {tag}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                    {desc}
+          <div className="px-6 py-6 md:px-8 md:py-8">
+            <div className="rounded-[1.75rem] border border-border bg-muted/55 p-6 text-brand-navy shadow-[0_18px_35px_-30px_rgba(15,23,42,0.4)]">
+              <div className="sm:flex sm:items-center sm:justify-between sm:gap-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+                    Campus y Alianzas
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold text-brand-navy">
+                    Sedes, extensiones y colaboraciones estratégicas
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+                    Accede a los campus de La Vega y Constanza, nuestros centros educativos aliados y las extensiones académicas de UCATECI.
                   </p>
                 </div>
-                <ArrowUpRight
-                  className="h-4 w-4 text-muted-foreground group-hover:text-brand-red group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"
-                  aria-hidden="true"
-                />
-              </a>
-            ))}
+                <div className="mt-4 sm:mt-0">
+                  <Button asChild className="rounded-full bg-brand-red text-accent-foreground hover:bg-brand-red/90">
+                    <Link href="#campus">Ver Campus y Alianzas</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {items.map(({ title, desc, icon: Icon, href, tag }) => (
+                <Link
+                  key={title}
+                  href={href}
+                  className="interactive-lift group relative flex min-h-[12rem] items-start gap-4 overflow-hidden rounded-[1.5rem] border border-border bg-card/95 p-6 shadow-[0_18px_35px_-30px_rgba(15,23,42,0.4)] transition-colors hover:border-brand-red/20 hover:bg-muted/30 focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-navy/0 via-brand-red/35 to-brand-gold/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-navy/6 text-brand-navy transition-colors group-hover:bg-brand-red group-hover:text-accent-foreground">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-semibold text-brand-navy">{title}</h3>
+                      {tag && (
+                        <span className="rounded-full bg-brand-gold/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-navy">
+                          {tag}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {desc}
+                    </p>
+                  </div>
+                  <ArrowUpRight
+                    className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-red"
+                    aria-hidden="true"
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

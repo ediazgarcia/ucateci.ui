@@ -60,7 +60,7 @@ type MegaMenu = {
 
 const CEB_MEGA_MENUS: MegaMenu[] = [
   {
-    label: "Acerca del CEB",
+    label: "Nosotros",
     href: "/campus/ceb#acerca",
     columns: [
       {
@@ -210,6 +210,7 @@ const CEB_SEARCH_ITEMS = {
 export function CEBHeader() {
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -226,7 +227,7 @@ export function CEBHeader() {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2">
+      <div className="hidden md:block bg-primary py-2 text-primary-foreground">
         <div className="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-4">
@@ -254,26 +255,21 @@ export function CEBHeader() {
 
       {/* Main Header */}
       <header
-        className="sticky top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+        className="sticky top-0 z-50 border-b border-border/60 bg-background/95 shadow-[0_18px_40px_-38px_rgba(15,23,42,0.85)] backdrop-blur supports-[backdrop-filter]:bg-background/80"
         onMouseLeave={() => setActiveMenu(null)}
       >
-        <div className="mx-auto grid h-16 w-full max-w-[96rem] grid-cols-[auto_minmax(0,1fr)_auto] items-center justify-items-stretch gap-8 px-0 md:h-20">
+        <div className="mx-auto grid h-16 w-full max-w-[96rem] grid-cols-[minmax(auto,24rem)_minmax(0,1fr)_auto] items-center gap-6 px-4 sm:px-6 lg:px-8 md:h-20">
           {/* Logo */}
-          <Link href="/campus/ceb" className="flex items-center gap-3 shrink-0 justify-self-start -ml-20 xl:-ml-24" aria-label="CEBUCATECI - Inicio">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-primary">CEBUCATECI</h1>
-                <p className="text-xs text-muted-foreground">Centro Educacional de Bonao</p>
-              </div>
+          <Link href="/campus/ceb" className="flex items-center gap-3 shrink-0" aria-label="CEBUCATECI - Inicio">
+            <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-muted/20 bg-white shadow-sm">
+              <Image src="/Logo-UCATECI.png" alt="Logo UCATECI" fill className="object-contain" />
             </div>
+            <h1 className="text-lg font-semibold text-primary sm:text-xl">CEBUCATECI</h1>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex min-w-0 w-full items-center justify-center px-0 justify-self-center" aria-label="Principal">
-            <ul className="w-full max-w-[84rem] mx-auto flex flex-nowrap items-center justify-center gap-6 text-[12px] xl:gap-8 2xl:gap-10">
+          <nav className="hidden xl:flex justify-self-center items-center justify-center px-0" aria-label="Principal">
+            <ul className="flex flex-nowrap items-center justify-center gap-4 text-sm xl:gap-6 2xl:gap-8">
               {CEB_MEGA_MENUS.map((menu) => (
                 <li key={menu.label} className="flex-shrink-0">
                   <button
@@ -281,8 +277,12 @@ export function CEBHeader() {
                     onMouseEnter={() => setActiveMenu(menu.label)}
                     onFocus={() => setActiveMenu(menu.label)}
                     aria-expanded={activeMenu === menu.label}
-                    className="rounded-full px-1.5 py-1.5 text-[12px] font-semibold text-foreground/80 transition-colors hover:bg-muted hover:text-primary data-[active=true]:bg-muted data-[active=true]:text-primary 2xl:px-2 2xl:text-[13px]"
-                    data-active={activeMenu === menu.label}
+                    aria-haspopup="menu"
+                    className={`rounded-full px-4 py-2 transition-colors ${
+                      activeMenu === menu.label
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                        : "text-foreground/80 hover:bg-muted hover:text-primary"
+                    }`}
                   >
                     {menu.label}
                   </button>
@@ -291,7 +291,7 @@ export function CEBHeader() {
               <li className="flex-shrink-0">
                 <Link
                   href="/campus/ceb#tour"
-                  className="rounded-full px-1.5 py-1.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary 2xl:px-2 2xl:text-[13px]"
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                 >
                   Tour Virtual
                 </Link>
@@ -299,7 +299,7 @@ export function CEBHeader() {
               <li className="flex-shrink-0">
                 <Link
                   href="/campus/ceb#noticias"
-                  className="rounded-full px-1.5 py-1.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary 2xl:px-2 2xl:text-[13px]"
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                 >
                   Noticias
                 </Link>
@@ -307,7 +307,7 @@ export function CEBHeader() {
               <li className="flex-shrink-0">
                 <Link
                   href="/campus/ceb#contacto"
-                  className="rounded-full px-1.5 py-1.5 text-[12px] font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary 2xl:px-2 2xl:text-[13px]"
+                  className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                 >
                   Contacto
                 </Link>
@@ -342,7 +342,7 @@ export function CEBHeader() {
             </Button>
 
             {/* Mobile Menu */}
-            <Sheet>
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Abrir menú">
                   <Menu className="h-5 w-5" />
@@ -374,6 +374,7 @@ export function CEBHeader() {
                             <li key={item.title + item.href}>
                               <Link
                                 href={item.href}
+                                onClick={() => setMobileOpen(false)}
                                 className="block rounded-md py-1.5 text-sm text-foreground hover:text-primary"
                               >
                                 {item.title}
@@ -386,7 +387,9 @@ export function CEBHeader() {
 
                   <div className="mt-8 pt-8 border-t">
                     <Button className="w-full" asChild>
-                      <Link href="/campus/ceb#contacto">Solicitar Admisión</Link>
+                      <Link href="/campus/ceb#contacto" onClick={() => setMobileOpen(false)}>
+                        Solicitar Admisión
+                      </Link>
                     </Button>
                   </div>
                 </div>

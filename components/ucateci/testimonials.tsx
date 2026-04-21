@@ -61,7 +61,7 @@ export function Testimonials() {
                 >
                   <img
                     src={tt.image || "/placeholder.svg"}
-                    alt=""
+                    alt={`${tt.name}, ${tt.role}`}
                     className="h-12 w-12 rounded-full object-cover"
                   />
                   <div className="flex-1">

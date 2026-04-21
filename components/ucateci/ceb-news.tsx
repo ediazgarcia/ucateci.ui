@@ -107,9 +107,9 @@ export function CEBNews() {
             No hay noticias en esta categoría por el momento.
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featured && (
-              <article className="lg:col-span-2 group rounded-2xl overflow-hidden border border-border bg-card flex flex-col">
+              <article className="md:col-span-2 lg:col-span-2 group rounded-2xl overflow-hidden border border-border bg-card flex flex-col">
                 <div className="relative aspect-[16/9] bg-primary overflow-hidden">
                   <div
                     aria-hidden="true"

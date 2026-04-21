@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import {
   Stethoscope,
   Cog,
@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 
 type FacultyKey = "salud" | "ingenieria" | "humanidades" | "economicas"
@@ -111,6 +112,7 @@ export function AcademicOfferings() {
   const [active, setActive] = useState<FacultyKey | "todas">("todas")
   const [modality, setModality] = useState<Modality | "todas">("todas")
   const [query, setQuery] = useState("")
+  const resultsRef = useRef<HTMLDivElement>(null)
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -123,6 +125,18 @@ export function AcademicOfferings() {
   }, [active, modality, query])
 
   const facultyInfo = active !== "todas" ? FACULTIES.find((f) => f.key === active) : null
+  const hasActiveFilters = active !== "todas" || modality !== "todas" || query.trim().length > 0
+  const filterSummary = [
+    active !== "todas" ? `Facultad: ${FACULTIES.find((faculty) => faculty.key === active)?.short}` : null,
+    modality !== "todas" ? `Modalidad: ${modality}` : null,
+    query.trim() ? `Busqueda: "${query.trim()}"` : null,
+  ].filter(Boolean) as string[]
+
+  const clearFilters = () => {
+    setActive("todas")
+    setModality("todas")
+    setQuery("")
+  }
 
   return (
     <section id="oferta" className="bg-paper py-16 md:py-24">
@@ -146,6 +160,15 @@ export function AcademicOfferings() {
             <InputGroupInput
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape" && query) {
+                  setQuery("")
+                }
+
+                if (event.key === "Enter" && results.length > 0) {
+                  resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+              }}
               placeholder="Buscar carrera (ej. Medicina, Civil, Derecho...)"
               aria-label="Buscar carrera"
             />
@@ -217,10 +240,19 @@ export function AcademicOfferings() {
                 </button>
               ))}
             </div>
-            <div className="text-xs font-medium text-muted-foreground">
+            <div className="text-xs font-medium text-muted-foreground" aria-live="polite">
               <span className="font-serif text-lg text-brand-navy">{results.length}</span>{" "}
               {results.length === 1 ? "carrera encontrada" : "carreras encontradas"}
             </div>
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs text-muted-foreground">
+              Usa Enter para ir directamente a los resultados y Escape para limpiar la busqueda.
+            </p>
+            <Button type="button" variant="outline" size="sm" onClick={clearFilters} disabled={!hasActiveFilters}>
+              Limpiar filtros
+            </Button>
           </div>
         </div>
 
@@ -243,15 +275,31 @@ export function AcademicOfferings() {
           </div>
         )}
 
+        {filterSummary.length > 0 && (
+          <div className="mx-auto mt-6 flex max-w-6xl flex-wrap gap-2">
+            {filterSummary.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* Results grid */}
-        <div className="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={resultsRef} className="mx-auto mt-8 grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-3">
           {results.length === 0 && (
             <div className="col-span-full rounded-2xl border border-dashed border-border bg-card p-10 text-center">
               <Search className="mx-auto h-8 w-8 text-muted-foreground" aria-hidden="true" />
               <p className="mt-3 font-serif text-lg text-brand-navy">Sin resultados</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                No encontramos carreras con los filtros actuales. Prueba con otro término.
+                No encontramos carreras con los filtros actuales. Prueba con otra palabra o limpia los filtros para volver a empezar.
               </p>
+              <Button type="button" variant="outline" className="mt-5" onClick={clearFilters}>
+                Ver todas las carreras
+              </Button>
             </div>
           )}
           {results.map((c) => {

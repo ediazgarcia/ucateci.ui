@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   GraduationCap,
   Search,
@@ -90,7 +91,7 @@ const CONSTANZA_MEGA_MENUS: MegaMenu[] = [
       title: "Educación sostenible para el desarrollo",
       description: "Contribuyendo al crecimiento exponencial de Constanza en agricultura, agua, ambiente y agroecoturismo.",
       href: "/campus/constanza#acerca",
-      image: "/ucateci/campus-constanza.jpg",
+      image: "/ucateci/campus-aerial.jpg",
     },
   },
   {
@@ -213,6 +214,8 @@ const CONSTANZA_SEARCH_ITEMS = {
 export function ConstanzaHeader() {
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -226,10 +229,17 @@ export function ConstanzaHeader() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
+  const navigate = (href: string) => {
+    setOpen(false)
+    setActiveMenu(null)
+    setMobileOpen(false)
+    router.push(href)
+  }
+
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2">
+      <div className="hidden md:block bg-primary py-2 text-primary-foreground">
         <div className="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-4">
@@ -256,7 +266,7 @@ export function ConstanzaHeader() {
       </div>
 
       {/* Main Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+      <header className="sticky top-0 z-50 border-b bg-background/95 shadow-[0_18px_40px_-38px_rgba(15,23,42,0.85)] backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
@@ -311,19 +321,20 @@ export function ConstanzaHeader() {
               </div>
 
               {/* Mobile Menu */}
-              <Sheet>
+              <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="sm" className="lg:hidden">
+                  <Button variant="ghost" size="sm" className="lg:hidden" aria-label="Abrir menú">
                     <Menu className="w-5 h-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-80">
+                <SheetContent side="right" className="w-full sm:max-w-sm">
                   <SheetTitle className="sr-only">Menú de navegación</SheetTitle>
                   <div className="flex flex-col space-y-4 mt-6">
                     {CONSTANZA_MEGA_MENUS.map((menu) => (
                       <div key={menu.label}>
                         <Link
                           href={menu.href}
+                          onClick={() => setMobileOpen(false)}
                           className="block py-2 text-lg font-medium hover:text-primary transition-colors"
                         >
                           {menu.label}
@@ -332,7 +343,7 @@ export function ConstanzaHeader() {
                     ))}
                     <div className="pt-4 border-t">
                       <Button asChild className="w-full">
-                        <Link href="/campus/constanza#contacto">
+                        <Link href="/campus/constanza#contacto" onClick={() => setMobileOpen(false)}>
                           Solicitar Información
                         </Link>
                       </Button>
@@ -422,30 +433,24 @@ export function ConstanzaHeader() {
           <CommandEmpty>No se encontraron resultados.</CommandEmpty>
           <CommandGroup heading="Servicios">
             {CONSTANZA_SEARCH_ITEMS.servicios.map((item) => (
-              <CommandItem key={item.name} asChild>
-                <Link href={item.href} onClick={() => setOpen(false)}>
-                  {item.name}
-                </Link>
+              <CommandItem key={item.name} onSelect={() => navigate(item.href)}>
+                <span>{item.name}</span>
               </CommandItem>
             ))}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Páginas">
             {CONSTANZA_SEARCH_ITEMS.paginas.map((item) => (
-              <CommandItem key={item.name} asChild>
-                <Link href={item.href} onClick={() => setOpen(false)}>
-                  {item.name}
-                </Link>
+              <CommandItem key={item.name} onSelect={() => navigate(item.href)}>
+                <span>{item.name}</span>
               </CommandItem>
             ))}
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Actividades">
             {CONSTANZA_SEARCH_ITEMS.actividades.map((activity) => (
-              <CommandItem key={activity} asChild>
-                <Link href="/campus/constanza#vida" onClick={() => setOpen(false)}>
-                  {activity}
-                </Link>
+              <CommandItem key={activity} onSelect={() => navigate("/campus/constanza#vida")}>
+                <span>{activity}</span>
               </CommandItem>
             ))}
           </CommandGroup>

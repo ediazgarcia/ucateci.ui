@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Open_Sans, Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 
 // Body — limpia, legible, neutra institucional
@@ -48,9 +50,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${openSans.variable} ${montserrat.variable} bg-background`}>
-      <body className="font-sans antialiased overflow-x-hidden">
-        {children}
+    <html lang="es" suppressHydrationWarning className={`${openSans.variable} ${montserrat.variable} bg-background`}>
+      <body className="font-sans antialiased overflow-x-clip">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+          <Toaster richColors position="top-right" />
+        </ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

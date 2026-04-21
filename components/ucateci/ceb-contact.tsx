@@ -1,210 +1,209 @@
-import { MapPin, Phone, Mail, Clock, Calendar, FileText, Users, GraduationCap } from "lucide-react"
+import { Calendar, Clock, FileText, GraduationCap, MapPin, Mail, Phone, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ContactInquiryForm } from "@/components/ucateci/contact-inquiry-form"
 
 const CONTACT_INFO = [
   {
     icon: MapPin,
-    title: "Dirección",
-    details: ["Centro Educacional de Bonao", "Bonao, República Dominicana"],
+    title: "Direccion",
+    details: ["Centro Educacional de Bonao", "Bonao, Republica Dominicana"],
   },
   {
     icon: Phone,
-    title: "Teléfono",
-    details: ["+1 (809) 123-4567", "+1 (809) 123-4568"],
+    title: "Telefonos",
+    details: ["Recepcion: +1 (809) 123-4567", "Admisiones: +1 (809) 123-4568"],
   },
   {
     icon: Mail,
-    title: "Correo Electrónico",
+    title: "Correo",
     details: ["info@cebucateci.edu.do", "admissions@cebucateci.edu.do"],
   },
   {
     icon: Clock,
-    title: "Horario de Oficina",
-    details: ["Lunes a Viernes: 7:00 AM - 4:00 PM", "Sábados: 8:00 AM - 12:00 PM"],
+    title: "Horario de oficina",
+    details: ["Lunes a viernes: 7:00 a.m. - 4:00 p.m.", "Sabados: 8:00 a.m. - 12:00 p.m."],
   },
 ]
 
 const ADMISSION_STEPS = [
   {
     step: 1,
-    title: "Solicitud en Línea",
-    description: "Completa el formulario de admisión en nuestro sitio web",
+    title: "Comparte tus datos",
+    description: "Completa el formulario y guardaremos tu progreso si necesitas salir antes de terminar.",
     icon: FileText,
   },
   {
     step: 2,
-    title: "Entrevista Familiar",
-    description: "Reunión con la familia para conocer sus expectativas",
+    title: "Conversa con el colegio",
+    description: "Respondemos tus dudas en lenguaje claro y te indicamos que documentos preparar.",
     icon: Users,
   },
   {
     step: 3,
-    title: "Evaluación Académica",
-    description: "Pruebas de nivel académico y conocimientos básicos",
+    title: "Evalua la mejor opcion",
+    description: "Revisamos nivel, acompanamiento familiar y necesidades academicas del estudiante.",
     icon: GraduationCap,
   },
   {
     step: 4,
-    title: "Visita al Campus",
-    description: "Recorrido por nuestras instalaciones y programa de bienvenida",
+    title: "Agenda tu visita",
+    description: "Conoce el campus, el equipo docente y las actividades extracurriculares antes de decidir.",
     icon: MapPin,
   },
 ]
 
 const REQUIREMENTS = [
   "Certificado de nacimiento original",
-  "Certificado de vacunación al día",
-  "Historial académico anterior",
-  "Fotografías tamaño carné",
-  "Formulario de admisión completado",
-  "Pago de matrícula inicial",
+  "Certificado de vacunacion al dia",
+  "Historial academico anterior",
+  "Fotografias tamano carne",
+  "Formulario de admision completo",
+  "Pago de matricula inicial",
+]
+
+const PROGRAM_OPTIONS = [
+  { value: "inicial", label: "Nivel inicial" },
+  { value: "primaria", label: "Primaria" },
+  { value: "secundaria", label: "Secundaria" },
+  { value: "bachillerato", label: "Bachillerato" },
+  { value: "orientacion", label: "Quiero orientacion para elegir nivel" },
 ]
 
 export function CEBContact() {
   return (
     <section className="bg-muted/30 py-16 md:py-24" id="contacto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Contacto y Admisiones</span>
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Contacto y admisiones</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
-            Únete a Nuestra Familia
+            Recibe orientacion antes de tomar la decision
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Estamos aquí para responder tus preguntas y guiarte en el proceso de admisión.
-            ¡Esperamos conocerte pronto!
+            Te ayudamos a resolver dudas, conocer requisitos y organizar tu proceso de ingreso sin perder informacion.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-8">Información de Contacto</h3>
-            <div className="space-y-6">
-              {CONTACT_INFO.map((info, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-primary" />
+        <div className="mb-16 grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="space-y-6">
+            <div className="rounded-[1.75rem] border border-border bg-card p-6 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.4)] md:p-8">
+              <h3 className="text-2xl font-bold text-primary">Informacion de contacto</h3>
+              <div className="mt-8 space-y-6">
+                {CONTACT_INFO.map((info) => (
+                  <div key={info.title} className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <info.icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">{info.title}</h4>
+                      <div className="mt-1 space-y-1">
+                        {info.details.map((detail) => (
+                          <p key={detail} className="text-sm text-muted-foreground">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-1">{info.title}</h4>
-                    {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-muted-foreground">{detail}</p>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-primary/10 bg-primary p-6 text-primary-foreground shadow-[0_24px_50px_-34px_rgba(15,23,42,0.45)] md:p-8">
+              <h3 className="text-2xl font-bold">Atencion rapida</h3>
+              <p className="mt-3 text-sm leading-relaxed text-primary-foreground/85">
+                Si prefieres hablar con alguien hoy mismo, puedes llamarnos o solicitar una visita guiada al campus.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button asChild variant="secondary" className="rounded-full">
+                  <a href="tel:+18091234567">
+                    <Phone className="h-4 w-4" />
+                    Llamar ahora
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-white/40 bg-transparent text-white hover:bg-white hover:text-primary"
+                >
+                  <a href="mailto:admissions@cebucateci.edu.do">
+                    <Mail className="h-4 w-4" />
+                    Escribir por correo
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-8">Envíanos un Mensaje</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-primary mb-2">Nombre</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="Tu nombre"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-primary mb-2">Apellido</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="Tu apellido"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-primary mb-2">Correo Electrónico</label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="tu@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-primary mb-2">Teléfono</label>
-                <input
-                  type="tel"
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="+1 (809) 123-4567"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-primary mb-2">Mensaje</label>
-                <textarea
-                  rows={4}
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="¿En qué podemos ayudarte?"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Enviar Mensaje
-              </button>
-            </form>
-          </div>
+          <ContactInquiryForm
+            storageKey="ceb-contact-form"
+            campusLabel="CEBUCATECI"
+            campusEmail="admissions@cebucateci.edu.do"
+            primaryPhone="+1 (809) 123-4567"
+            programOptions={PROGRAM_OPTIONS}
+          />
         </div>
 
-        {/* Admission Process */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Proceso de Admisión</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ADMISSION_STEPS.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                  {step.step}
+          <h3 className="text-center text-2xl font-bold text-primary">Proceso de admision</h3>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {ADMISSION_STEPS.map((step) => (
+              <article key={step.step} className="rounded-[1.5rem] border border-border bg-card p-6 text-center shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <step.icon className="h-7 w-7" aria-hidden="true" />
                 </div>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h4 className="text-lg font-semibold text-primary mb-2">{step.title}</h4>
-                <p className="text-muted-foreground text-sm">{step.description}</p>
-              </div>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Paso {step.step}</p>
+                <h4 className="mt-2 text-lg font-semibold text-primary">{step.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+              </article>
             ))}
           </div>
         </div>
 
-        {/* Requirements */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Requisitos de Admisión</h3>
-          <div className="bg-background p-8 rounded-lg border max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {REQUIREMENTS.map((requirement, index) => (
-                <div key={index} className="flex items-center">
-                  <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                  <span className="text-muted-foreground">{requirement}</span>
-                </div>
-              ))}
+        <div className="rounded-[1.75rem] border border-border bg-background p-8 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.35)]">
+          <h3 className="text-center text-2xl font-bold text-primary">Requisitos de admision</h3>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <div>
+              <h4 className="font-semibold text-primary">Documentos requeridos</h4>
+              <ul className="mt-4 space-y-3">
+                {REQUIREMENTS.map((requirement) => (
+                  <li key={requirement} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    <span>{requirement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </div>
 
-        {/* Call to Action */}
-        <div className="text-center bg-primary text-white p-8 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">¿Listo para comenzar?</h3>
-          <p className="mb-6 text-primary-foreground/90">
-            Agenda una visita a nuestro campus y conoce de primera mano la experiencia CEB.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              <Calendar className="w-4 h-4 inline mr-2" />
-              Agendar Visita
-            </button>
-            <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
-              <FileText className="w-4 h-4 inline mr-2" />
-              Solicitar Admisión
-            </button>
+            <div className="space-y-4">
+              <h4 className="font-semibold text-primary">Lo que mas preguntan las familias</h4>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium text-primary">Fechas y cupos</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Te indicamos la disponibilidad real del nivel que buscas antes de que completes todo el proceso.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <Users className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium text-primary">Acompanamiento familiar</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Podemos coordinar una conversacion con madres, padres o tutores para resolver dudas juntos.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium text-primary">Siguientes pasos claros</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Despues de escribirnos, te diremos exactamente que documentos preparar y a quien contactar.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

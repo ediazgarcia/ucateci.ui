@@ -17,31 +17,33 @@ import { ResourcesSection } from "@/components/ucateci/resources-section"
 import { SiteFooter } from "@/components/ucateci/site-footer"
 import { AdmissionsChatbot } from "@/components/ucateci/admissions-chatbot"
 import { BackToTop } from "@/components/ucateci/back-to-top"
+import { PageShell } from "@/components/ucateci/page-shell"
+import { Reveal } from "@/components/ucateci/reveal"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
+    <PageShell>
       <AnnouncementBar />
       <SiteHeader />
-      <main>
+      <main className="relative">
         <HeroSection />
-        <QuickAccess />
-        <WhyUcateci />
-        <AcademicOfferings />
-        <Rankings />
-        <ResearchSection />
-        <Testimonials />
-        <StudentLife />
-        <VirtualTour />
-        <NewsSection />
-        <ServicesSection />
-        <EventsCalendar />
-        <AdmissionsCTA />
-        <ResourcesSection />
+        <Reveal><QuickAccess /></Reveal>
+        <Reveal><WhyUcateci /></Reveal>
+        <Reveal><AcademicOfferings /></Reveal>
+        <Reveal><Rankings /></Reveal>
+        <Reveal><ResearchSection /></Reveal>
+        <Reveal><Testimonials /></Reveal>
+        <Reveal><StudentLife /></Reveal>
+        <Reveal><VirtualTour /></Reveal>
+        <Reveal><NewsSection /></Reveal>
+        <Reveal><ServicesSection /></Reveal>
+        <Reveal><EventsCalendar /></Reveal>
+        <Reveal><AdmissionsCTA /></Reveal>
+        <Reveal><ResourcesSection /></Reveal>
       </main>
       <SiteFooter />
       <BackToTop />
       <AdmissionsChatbot />
-    </div>
+    </PageShell>
   )
 }

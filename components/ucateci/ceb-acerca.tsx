@@ -1,4 +1,8 @@
+"use client"
+
 import { Award, BookOpen, Globe2, Handshake, HeartHandshake, Sparkles, Users, Target, Eye, Star, Calendar, MapPin } from "lucide-react"
+import { motion } from "framer-motion"
+import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const FEATURES = [
   {
@@ -41,11 +45,18 @@ const STATS = [
 ]
 
 export function CEBAcerca() {
+  const { ref, isVisible } = useScrollAnimation()
   return (
     <section className="bg-background py-16 md:py-24" id="acerca">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center mb-16">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-3xl text-center mb-16"
+        >
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Sobre Nosotros</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
             Centro Educacional de Bonao
@@ -54,7 +65,7 @@ export function CEBAcerca() {
             Una institución educativa comprometida con la formación integral de estudiantes
             desde nivel inicial hasta secundaria, con énfasis en valores cristianos y excelencia académica.
           </p>
-        </div>
+        </motion.div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
@@ -67,17 +78,37 @@ export function CEBAcerca() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          initial="hidden"
+          animate={isVisible ? "show" : "hidden"}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
           {FEATURES.map((feature, index) => (
-            <div key={index} className="bg-card p-6 rounded-lg border hover:shadow-lg transition-shadow">
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 },
+              }}
+              className="bg-card p-6 rounded-lg border hover:shadow-lg transition-shadow"
+            >
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <feature.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-lg font-semibold text-primary mb-2">{feature.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Mission Vision Values */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

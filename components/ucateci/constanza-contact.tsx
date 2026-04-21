@@ -1,248 +1,211 @@
-import { MapPin, Phone, Mail, Clock, Calendar, FileText, Users, GraduationCap } from "lucide-react"
+import { Calendar, Clock, FileText, GraduationCap, MapPin, Mail, Phone, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ContactInquiryForm } from "@/components/ucateci/contact-inquiry-form"
 
 const CONTACT_INFO = [
   {
     icon: MapPin,
-    title: "Dirección",
-    details: ["Ctra. Comandante Jiménez Moya, No. 34", "Colonia Española, Constanza", "República Dominicana"],
+    title: "Direccion",
+    details: ["Ctra. Comandante Jimenez Moya, No. 34", "Colonia Espanola, Constanza", "Republica Dominicana"],
   },
   {
     icon: Phone,
-    title: "Teléfonos",
-    details: ["Recepción/Coordinación: +1 (809) 539-2836", "Admisiones/Registro: +1 (809) 539-2672", "Caja: +1 (809) 539-2866", "Flota Recinto: +1 (829) 932-5588"],
+    title: "Telefonos",
+    details: [
+      "Recepcion y coordinacion: +1 (809) 539-2836",
+      "Admisiones y registro: +1 (809) 539-2672",
+      "Caja: +1 (809) 539-2866",
+      "Flota recinto: +1 (829) 932-5588",
+    ],
   },
   {
     icon: Mail,
-    title: "Correo Electrónico",
+    title: "Correo",
     details: ["info@constanza.ucateci.edu.do", "admissions@constanza.ucateci.edu.do"],
   },
   {
     icon: Clock,
-    title: "Horario de Oficina",
-    details: ["Lunes a Viernes: 8:00 AM - 5:00 PM", "Sábados: 8:00 AM - 12:00 PM"],
+    title: "Horario de oficina",
+    details: ["Lunes a viernes: 8:00 a.m. - 5:00 p.m.", "Sabados: 8:00 a.m. - 12:00 p.m."],
   },
 ]
 
 const ADMISSION_STEPS = [
   {
     step: 1,
-    title: "Solicitud en Línea",
-    description: "Completa el formulario de admisión en nuestro sitio web",
+    title: "Completa tu solicitud",
+    description: "Cuéntanos que programa te interesa y guarda tu consulta si necesitas volver despues.",
     icon: FileText,
   },
   {
     step: 2,
-    title: "Entrevista Académica",
-    description: "Evaluación de antecedentes académicos y profesionales",
+    title: "Habla con admisiones",
+    description: "Revisamos tu perfil, resolvemos dudas y te indicamos el camino mas conveniente.",
     icon: Users,
   },
   {
     step: 3,
-    title: "Pruebas de Admisión",
-    description: "Evaluación de conocimientos específicos del programa",
+    title: "Entrega documentos",
+    description: "Te orientamos sobre requisitos, becas y fechas para que no pierdas tiempo.",
     icon: GraduationCap,
   },
   {
     step: 4,
-    title: "Visita al Campus",
-    description: "Recorrido por nuestras instalaciones especializadas",
+    title: "Conoce el campus",
+    description: "Agenda una visita para recorrer laboratorios, aulas y espacios de investigacion.",
     icon: MapPin,
   },
 ]
 
 const REQUIREMENTS = [
-  "Título de bachillerato o equivalente",
+  "Titulo de bachillerato o equivalente",
   "Certificado de nacimiento original",
-  "Historial académico universitario (si aplica)",
-  "Fotografías tamaño carné",
-  "Formulario de admisión completado",
-  "Pago de matrícula inicial",
+  "Historial academico universitario, si aplica",
+  "Fotografias tamano carne",
+  "Formulario de admision completo",
+  "Pago de matricula inicial",
   "Entrevista personal",
+]
+
+const PROGRAM_OPTIONS = [
+  { value: "agricultura", label: "Licenciatura en Agricultura" },
+  { value: "ingenieria-ambiental", label: "Ingenieria Ambiental" },
+  { value: "gestion-agua", label: "Maestria en Gestion del Agua" },
+  { value: "agroecoturismo", label: "Especializacion en Agroecoturismo" },
+  { value: "otro", label: "Quiero recibir orientacion sobre otro programa" },
 ]
 
 export function ConstanzaContact() {
   return (
     <section className="bg-muted/30 py-16 md:py-24" id="contacto">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Contacto y Admisiones</span>
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Contacto y admisiones</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
-            Únete a Nuestra Comunidad Académica
+            Da el siguiente paso con informacion clara
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Estamos aquí para responder tus preguntas y guiarte en el proceso de admisión.
-            Forma parte del desarrollo sostenible de Constanza.
+            Estamos aqui para responder tus preguntas, guardar tu progreso y acompanarte durante todo el proceso de admision.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-8">Información de Contacto</h3>
-            <div className="space-y-6">
-              {CONTACT_INFO.map((info, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-primary" />
+        <div className="mb-16 grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="space-y-6">
+            <div className="rounded-[1.75rem] border border-border bg-card p-6 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.4)] md:p-8">
+              <h3 className="text-2xl font-bold text-primary">Informacion de contacto</h3>
+              <div className="mt-8 space-y-6">
+                {CONTACT_INFO.map((info) => (
+                  <div key={info.title} className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <info.icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-primary">{info.title}</h4>
+                      <div className="mt-1 space-y-1">
+                        {info.details.map((detail) => (
+                          <p key={detail} className="text-sm text-muted-foreground">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-1">{info.title}</h4>
-                    {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-muted-foreground text-sm">{detail}</p>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-primary/10 bg-primary p-6 text-primary-foreground shadow-[0_24px_50px_-34px_rgba(15,23,42,0.45)] md:p-8">
+              <h3 className="text-2xl font-bold">Ayuda inmediata</h3>
+              <p className="mt-3 text-sm leading-relaxed text-primary-foreground/85">
+                Si prefieres una respuesta mas rapida, puedes llamarnos o escribirnos directamente. Nuestro equipo te dira exactamente que sigue.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button asChild variant="secondary" className="rounded-full">
+                  <a href="tel:+18095392836">
+                    <Phone className="h-4 w-4" />
+                    Llamar ahora
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-white/40 bg-transparent text-white hover:bg-white hover:text-primary"
+                >
+                  <a href="mailto:admissions@constanza.ucateci.edu.do">
+                    <Mail className="h-4 w-4" />
+                    Escribir por correo
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <h3 className="text-2xl font-bold text-primary mb-8">Envíanos un Mensaje</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-primary mb-2">
-                    Nombre
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-primary mb-2">
-                    Apellido
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
-                  Correo Electrónico
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
-                  Teléfono
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                />
-              </div>
-              <div>
-                <label htmlFor="program" className="block text-sm font-medium text-primary mb-2">
-                  Programa de Interés
-                </label>
-                <select
-                  id="program"
-                  name="program"
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                >
-                  <option value="">Selecciona un programa</option>
-                  <option value="agricultura">Licenciatura en Agricultura</option>
-                  <option value="ingenieria-ambiental">Ingeniería Ambiental</option>
-                  <option value="gestion-agua">Maestría en Gestión del Agua</option>
-                  <option value="agroecoturismo">Especialización en Agroecoturismo</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
-                  Mensaje
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
-                  placeholder="Cuéntanos sobre tu interés en nuestros programas..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors"
-              >
-                Enviar Mensaje
-              </button>
-            </form>
-          </div>
+          <ContactInquiryForm
+            storageKey="constanza-contact-form"
+            campusLabel="UCATECI Constanza"
+            campusEmail="admissions@constanza.ucateci.edu.do"
+            primaryPhone="+1 (809) 539-2836"
+            programOptions={PROGRAM_OPTIONS}
+          />
         </div>
 
-        {/* Admission Process */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Proceso de Admisión</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ADMISSION_STEPS.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <step.icon className="w-8 h-8 text-primary" />
+          <h3 className="text-center text-2xl font-bold text-primary">Proceso de admision</h3>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {ADMISSION_STEPS.map((step) => (
+              <article key={step.step} className="rounded-[1.5rem] border border-border bg-card p-6 text-center shadow-[0_18px_40px_-30px_rgba(15,23,42,0.35)]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <step.icon className="h-7 w-7" aria-hidden="true" />
                 </div>
-                <div className="text-2xl font-bold text-primary mb-2">{step.step}</div>
-                <h4 className="font-semibold text-primary mb-2">{step.title}</h4>
-                <p className="text-muted-foreground text-sm">{step.description}</p>
-              </div>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Paso {step.step}</p>
+                <h4 className="mt-2 text-lg font-semibold text-primary">{step.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+              </article>
             ))}
           </div>
         </div>
 
-        {/* Requirements */}
-        <div className="bg-background rounded-lg border p-8">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Requisitos de Admisión</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="rounded-[1.75rem] border border-border bg-background p-8 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.35)]">
+          <h3 className="text-center text-2xl font-bold text-primary">Requisitos de admision</h3>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
             <div>
-              <h4 className="font-semibold text-primary mb-4">Documentos Requeridos</h4>
-              <ul className="space-y-2">
-                {REQUIREMENTS.map((req, index) => (
-                  <li key={index} className="flex items-center">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">{req}</span>
+              <h4 className="font-semibold text-primary">Documentos requeridos</h4>
+              <ul className="mt-4 space-y-3">
+                {REQUIREMENTS.map((requirement) => (
+                  <li key={requirement} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    <span>{requirement}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h4 className="font-semibold text-primary mb-4">Información Adicional</h4>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Calendar className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+
+            <div className="space-y-4">
+              <h4 className="font-semibold text-primary">Informacion adicional</h4>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
                   <div>
-                    <div className="font-medium text-primary">Fechas de Admisión</div>
-                    <div className="text-sm text-muted-foreground">Abiertas todo el año</div>
+                    <p className="font-medium text-primary">Fechas de admision</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Puedes iniciar tu solicitud durante todo el ano y te diremos la fecha disponible mas cercana.</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <Users className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <Users className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
                   <div>
-                    <div className="font-medium text-primary">Cupos Limitados</div>
-                    <div className="text-sm text-muted-foreground">Por programa académico</div>
+                    <p className="font-medium text-primary">Acompanamiento personalizado</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Si no sabes que programa elegir, te orientamos antes de que tomes una decision.</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <GraduationCap className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/35 p-4">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="mt-0.5 h-5 w-5 text-primary" aria-hidden="true" />
                   <div>
-                    <div className="font-medium text-primary">Becas Disponibles</div>
-                    <div className="text-sm text-muted-foreground">Para estudiantes destacados</div>
+                    <p className="font-medium text-primary">Becas y apoyos</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Pregunta por las opciones de becas y financiamiento disponibles para estudiantes destacados.</p>
                   </div>
                 </div>
               </div>

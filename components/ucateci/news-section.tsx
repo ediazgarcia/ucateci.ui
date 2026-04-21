@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { ArrowRight, Calendar, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 type Category = "Todas" | "Institucional" | "Académica" | "Investigación" | "Cultural"
 
@@ -75,6 +77,7 @@ const categories: Category[] = [
 
 export function NewsSection() {
   const [filter, setFilter] = useState<Category>("Todas")
+  const { ref, isVisible } = useScrollAnimation()
   const filtered = news.filter(
     (n) => filter === "Todas" || n.category === filter
   )
@@ -129,10 +132,30 @@ export function NewsSection() {
             No hay noticias en esta categoría por el momento.
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-6">
+          <motion.div
+            ref={ref}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            animate={isVisible ? "show" : "hidden"}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
             {/* Featured */}
             {featured && (
-              <article className="lg:col-span-2 group rounded-2xl overflow-hidden border border-border bg-card flex flex-col">
+              <motion.article
+                className="md:col-span-2 lg:col-span-2 group rounded-2xl overflow-hidden border border-border bg-card flex flex-col"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0 },
+                }}
+              >
                 <div className="relative aspect-[16/9] bg-brand-navy overflow-hidden">
                   <div
                     aria-hidden="true"
@@ -173,15 +196,30 @@ export function NewsSection() {
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </div>
-              </article>
+              </motion.article>
             )}
 
             {/* Rest */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            <motion.div
+              className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6"
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+            >
               {rest.slice(0, 3).map((n) => (
-                <article
+                <motion.article
                   key={n.title}
                   className="group rounded-2xl border border-border bg-card p-5 flex gap-4 hover:border-brand-navy/30 transition-colors"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: { opacity: 1, y: 0 },
+                  }}
                 >
                   <div className="h-20 w-20 shrink-0 rounded-lg bg-gradient-to-br from-brand-navy to-brand-navy-deep flex items-center justify-center">
                     <span className="font-serif text-2xl text-brand-gold">
@@ -204,10 +242,10 @@ export function NewsSection() {
                       {n.excerpt}
                     </p>
                   </div>
-                </article>
+                </motion.article>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
 
         <div className="mt-10 flex justify-center">

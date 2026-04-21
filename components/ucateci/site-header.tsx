@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   GraduationCap,
   Search,
@@ -10,7 +11,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  ChevronDown,
   Facebook,
   Instagram,
   Youtube,
@@ -38,7 +38,6 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
-import { Kbd } from "@/components/ui/kbd"
 
 type MegaColumn = {
   heading: string
@@ -238,6 +237,8 @@ const SEARCH_ITEMS = {
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -251,10 +252,17 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", down)
   }, [])
 
+  const navigate = (href: string) => {
+    setOpen(false)
+    setActiveMenu(null)
+    setMobileOpen(false)
+    router.push(href)
+  }
+
   return (
     <>
       {/* Top bar */}
-      <div className="hidden md:block bg-brand-navy-deep text-brand-cream/90">
+      <div className="hidden lg:block bg-brand-navy-deep text-brand-cream/90">
         <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-3 px-2 sm:px-4 lg:px-6 xl:px-8 py-2 text-xs">
           <div className="flex min-w-0 items-center gap-3 md:gap-4">
             <span className="flex items-center gap-1.5">
@@ -296,7 +304,7 @@ export function SiteHeader() {
       {/* Main header */}
       <header
         id="inicio"
-        className="sticky top-0 z-40 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+        className="sticky top-0 z-40 border-b border-border/60 bg-background/95 shadow-[0_18px_40px_-38px_rgba(15,23,42,0.85)] backdrop-blur supports-[backdrop-filter]:bg-background/80"
         onMouseLeave={() => setActiveMenu(null)}
       >
         <div className="mx-auto flex h-16 w-full max-w-[96rem] items-center gap-2 px-2 sm:px-4 lg:px-6 xl:px-8 md:h-20">
@@ -376,7 +384,7 @@ export function SiteHeader() {
             </Button>
 
             {/* Mobile menu */}
-            <Sheet>
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Abrir menú">
                   <Menu className="h-5 w-5" />
@@ -397,6 +405,7 @@ export function SiteHeader() {
                             <li key={item.title + item.href}>
                               <Link
                                 href={item.href}
+                                onClick={() => setMobileOpen(false)}
                                 className="block rounded-md py-1.5 text-sm text-foreground hover:text-brand-navy"
                               >
                                 {item.title}
@@ -408,10 +417,12 @@ export function SiteHeader() {
                   ))}
                   <div className="flex flex-col gap-2 border-t border-border pt-4">
                     <Button asChild className="bg-brand-red text-accent-foreground hover:bg-brand-red/90">
-                      <Link href="#admisiones">Solicitar Admisión</Link>
+                      <Link href="#admisiones" onClick={() => setMobileOpen(false)}>
+                        Solicitar Admisión
+                      </Link>
                     </Button>
                     <Button asChild variant="outline">
-                      <Link href="#acceso">
+                      <Link href="#acceso" onClick={() => setMobileOpen(false)}>
                         <LogIn className="h-4 w-4" /> Portal del Estudiante
                       </Link>
                     </Button>
@@ -473,9 +484,11 @@ export function SiteHeader() {
                     href={menu.featured.href}
                     className="group relative overflow-hidden rounded-xl min-h-48"
                   >
-                    <img
+                    <Image
                       src={menu.featured.image || "/placeholder.svg"}
                       alt=""
+                      fill
+                      sizes="(max-width: 1280px) 100vw, 28rem"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/70 to-transparent" />
@@ -501,7 +514,7 @@ export function SiteHeader() {
           <CommandEmpty>No se encontraron resultados.</CommandEmpty>
           <CommandGroup heading="Carreras">
             {SEARCH_ITEMS.carreras.map((c) => (
-              <CommandItem key={c} onSelect={() => setOpen(false)}>
+              <CommandItem key={c} onSelect={() => navigate("#oferta")}>
                 <GraduationCap className="h-4 w-4" />
                 <span>{c}</span>
               </CommandItem>
@@ -510,7 +523,7 @@ export function SiteHeader() {
           <CommandSeparator />
           <CommandGroup heading="Servicios">
             {SEARCH_ITEMS.servicios.map((s) => (
-              <CommandItem key={s.name} onSelect={() => setOpen(false)}>
+              <CommandItem key={s.name} onSelect={() => navigate(s.href)}>
                 <Globe className="h-4 w-4" />
                 <span>{s.name}</span>
               </CommandItem>
@@ -519,7 +532,7 @@ export function SiteHeader() {
           <CommandSeparator />
           <CommandGroup heading="Páginas">
             {SEARCH_ITEMS.paginas.map((p) => (
-              <CommandItem key={p.name} onSelect={() => setOpen(false)}>
+              <CommandItem key={p.name} onSelect={() => navigate(p.href)}>
                 <ArrowRight className="h-4 w-4" />
                 <span>{p.name}</span>
               </CommandItem>
