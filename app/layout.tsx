@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning className={`${openSans.variable} ${montserrat.variable} bg-background`}>
+    <html lang="es" suppressHydrationWarning data-scroll-behavior="smooth" className={`${openSans.variable} ${montserrat.variable} bg-background`}>
       <body className="font-sans antialiased overflow-x-clip">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}

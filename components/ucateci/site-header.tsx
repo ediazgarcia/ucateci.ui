@@ -17,9 +17,16 @@ import {
   Globe,
   LogIn,
   ArrowRight,
+  BookOpen,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
   CommandDialog,
   CommandEmpty,
@@ -176,12 +183,40 @@ export function SiteHeader() {
               </Button>
             </AdmissionsWizard>
 
-            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex bg-transparent">
-              <Link href="#acceso">
-                <LogIn className="h-3.5 w-3.5" />
-                <span>Portal</span>
-              </Link>
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="outline" className="hidden md:inline-flex bg-transparent gap-1.5">
+                  <LogIn className="h-3.5 w-3.5" />
+                  <span>Portales</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuItem asChild>
+                  <a href="https://portal.ucateci.edu.do/Account/Login?ReturnUrl=%2F" target="_blank" rel="noopener noreferrer" className="cursor-pointer flex items-center">
+                    <GraduationCap className="h-4 w-4 mr-2" />
+                    <span>Portal Estudiantil</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="https://portal.ucateci.edu.do/portaldocent/Account/Login?ReturnUrl=%2Fportaldocent%2F" target="_blank" rel="noopener noreferrer" className="cursor-pointer flex items-center">
+                    <Globe className="h-4 w-4 mr-2" />
+                    <span>Portal Docente</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="https://virtual.ucateci.edu.do/login/index.php" target="_blank" rel="noopener noreferrer" className="cursor-pointer flex items-center">
+                    <LogIn className="h-4 w-4 mr-2" />
+                    <span>Aula Virtual</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="https://www.ucateci.edu.do/ucateci.edu.do/index.php?option=com_content&view=article&id=200" target="_blank" rel="noopener noreferrer" className="cursor-pointer flex items-center">
+                    <BookOpen className="h-4 w-4 mr-2" />
+                    <span>Biblioteca</span>
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Mobile menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -221,11 +256,23 @@ export function SiteHeader() {
                         Solicitar Admisión
                       </Button>
                     </AdmissionsWizard>
-                    <Button asChild variant="outline">
-                      <Link href="#acceso" onClick={() => setMobileOpen(false)}>
-                        <LogIn className="h-4 w-4" /> Portal del Estudiante
-                      </Link>
-                    </Button>
+                    <div className="flex flex-col gap-2 mt-2">
+                      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-brand-red">
+                        Portales de Acceso
+                      </div>
+                      <a href="https://portal.ucateci.edu.do/Account/Login?ReturnUrl=%2F" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-md py-2 text-sm text-foreground hover:text-brand-navy border-l border-transparent hover:border-brand-navy pl-3 transition-colors bg-muted/30">
+                        <GraduationCap className="h-4 w-4" /> Portal Estudiantil
+                      </a>
+                      <a href="https://portal.ucateci.edu.do/portaldocent/Account/Login?ReturnUrl=%2Fportaldocent%2F" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-md py-2 text-sm text-foreground hover:text-brand-navy border-l border-transparent hover:border-brand-navy pl-3 transition-colors bg-muted/30">
+                        <Globe className="h-4 w-4" /> Portal Docente
+                      </a>
+                      <a href="https://virtual.ucateci.edu.do/login/index.php" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-md py-2 text-sm text-foreground hover:text-brand-navy border-l border-transparent hover:border-brand-navy pl-3 transition-colors bg-muted/30">
+                        <LogIn className="h-4 w-4" /> Aula Virtual
+                      </a>
+                      <a href="https://www.ucateci.edu.do/ucateci.edu.do/index.php?option=com_content&view=article&id=200" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-md py-2 text-sm text-foreground hover:text-brand-navy border-l border-transparent hover:border-brand-navy pl-3 transition-colors bg-muted/30">
+                        <BookOpen className="h-4 w-4" /> Biblioteca
+                      </a>
+                    </div>
                   </div>
                 </div>
               </SheetContent>

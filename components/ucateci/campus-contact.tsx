@@ -135,9 +135,10 @@ export function CampusContact({ campusId }: { campusId: "ceb" | "constanza" }) {
                   <label htmlFor="interest" className="text-sm font-medium text-foreground">Área de interés</label>
                   <select 
                     id="interest" 
+                    defaultValue=""
                     className="flex h-12 w-full rounded-xl border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring appearance-none"
                   >
-                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="" disabled>Selecciona una opción</option>
                     <option value="admisiones">Información de Admisiones</option>
                     <option value="oferta">{isCEB ? "Niveles Educativos" : "Oferta Académica"}</option>
                     <option value="pagos">Pagos y Facturación</option>
