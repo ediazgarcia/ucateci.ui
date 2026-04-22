@@ -1,32 +1,6 @@
 import Link from "next/link"
-import { ArrowRight, Beaker, BookOpenCheck, FlaskConical, LineChart, Microscope, Users } from "lucide-react"
-
-const CENTERS = [
-  {
-    icon: Microscope,
-    name: "Centro de Salud Pública",
-    area: "Ciencias de la Salud",
-    projects: 14,
-  },
-  {
-    icon: Beaker,
-    name: "Centro de Innovación Agrícola",
-    area: "Ciencias Agropecuarias",
-    projects: 9,
-  },
-  {
-    icon: LineChart,
-    name: "Observatorio Económico del Cibao",
-    area: "Ciencias Económicas",
-    projects: 11,
-  },
-  {
-    icon: BookOpenCheck,
-    name: "Centro de Estudios Educativos",
-    area: "Humanidades",
-    projects: 7,
-  },
-]
+import { ArrowRight, FlaskConical, Users } from "lucide-react"
+import { RESEARCH_CENTERS, RESEARCH_STATS } from "@/lib/data"
 
 export function ResearchSection() {
   return (
@@ -34,34 +8,24 @@ export function ResearchSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <div className="lg:sticky lg:top-28">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Investigación</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Investigación académica</span>
             <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
-              Ciencia al servicio del país
+              Conocimiento al servicio de la sociedad
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               UCATECI impulsa la investigación aplicada con centros que abordan los principales desafíos de salud,
-              economía, educación y medio ambiente de República Dominicana.
+              economía, educación y medio ambiente de República Dominicana, formando investigadores comprometidos con el desarrollo regional.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-2xl bg-card p-4 text-center ring-1 ring-border">
-                <div className="font-serif text-3xl font-bold text-primary">41</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Proyectos activos
+              {RESEARCH_STATS.map((stat) => (
+                <div key={stat.label} className="rounded-2xl bg-card p-4 text-center ring-1 ring-border">
+                  <div className="font-serif text-3xl font-bold text-primary">{stat.value}</div>
+                  <div className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
-              </div>
-              <div className="rounded-2xl bg-card p-4 text-center ring-1 ring-border">
-                <div className="font-serif text-3xl font-bold text-primary">120+</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Publicaciones
-                </div>
-              </div>
-              <div className="rounded-2xl bg-card p-4 text-center ring-1 ring-border">
-                <div className="font-serif text-3xl font-bold text-primary">18</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  Convenios
-                </div>
-              </div>
+              ))}
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -82,7 +46,7 @@ export function ResearchSection() {
 
           <div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {CENTERS.map((c) => {
+              {RESEARCH_CENTERS.map((c) => {
                 const Icon = c.icon
                 return (
                   <article

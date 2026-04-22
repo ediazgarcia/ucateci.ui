@@ -14,15 +14,6 @@ import {
   Facebook,
   Instagram,
   Youtube,
-  BookOpen,
-  Users,
-  Microscope,
-  Heart,
-  Building2,
-  Calculator,
-  Scale,
-  Stethoscope,
-  Cpu,
   Globe,
   LogIn,
   ArrowRight,
@@ -38,201 +29,8 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
-
-type MegaColumn = {
-  heading: string
-  items: { title: string; href: string; description?: string; icon?: React.ComponentType<{ className?: string }> }[]
-}
-
-type MegaMenu = {
-  label: string
-  href: string
-  columns: MegaColumn[]
-  featured?: { title: string; description: string; href: string; image: string }
-}
-
-const MEGA_MENUS: MegaMenu[] = [
-  {
-    label: "Nosotros",
-    href: "#nosotros",
-    columns: [
-      {
-        heading: "La Universidad",
-        items: [
-          { title: "Historia", href: "#historia", icon: Building2, description: "Más de 40 años de excelencia" },
-          { title: "Misión y Visión", href: "#mision", icon: BookOpen },
-          { title: "Fides et Ratio", href: "#lema", icon: GraduationCap },
-          { title: "Autoridades", href: "#autoridades", icon: Users },
-        ],
-      },
-      {
-        heading: "Institucional",
-        items: [
-          { title: "Acreditaciones", href: "#acreditaciones", icon: Globe, description: "MESCyT, ADAAC, AUSJAL" },
-          { title: "Transparencia", href: "#transparencia", icon: Scale },
-          { title: "Campus La Vega", href: "#campus", icon: MapPin },
-          { title: "Tour Virtual", href: "#tour", icon: Globe },
-        ],
-      },
-    ],
-    featured: {
-      title: "40+ Años Formando Líderes",
-      description: "Conoce el legado católico que nos distingue en el Cibao.",
-      href: "#historia",
-      image: "/ucateci/campus-aerial.jpg",
-    },
-  },
-  {
-    label: "Oferta Académica",
-    href: "#oferta",
-    columns: [
-      {
-        heading: "Facultades",
-        items: [
-          { title: "Ciencias de la Salud", href: "#oferta", icon: Stethoscope, description: "Medicina, Odontología, Enfermería" },
-          { title: "Humanidades", href: "#oferta", icon: BookOpen, description: "Derecho, Psicología, Educación" },
-          { title: "Ingeniería", href: "#oferta", icon: Cpu, description: "Civil, Industrial, Sistemas" },
-          { title: "Ciencias Económicas", href: "#oferta", icon: Calculator, description: "Administración, Contabilidad" },
-        ],
-      },
-      {
-        heading: "Programas",
-        items: [
-          { title: "Grado", href: "#oferta", icon: GraduationCap },
-          { title: "Postgrado y Maestrías", href: "#postgrado", icon: Microscope },
-          { title: "Educación Continua", href: "#continua", icon: BookOpen },
-          { title: "Técnicos Superiores", href: "#tecnicos", icon: Users },
-        ],
-      },
-    ],
-    featured: {
-      title: "Admisiones 2026 Abiertas",
-      description: "Solicita tu admisión en línea. 20% de descuento por pronto pago.",
-      href: "#admisiones",
-      image: "/ucateci/students-campus.jpg",
-    },
-  },
-  {
-    label: "Investigación",
-    href: "#investigacion",
-    columns: [
-      {
-        heading: "Investigación",
-        items: [
-          { title: "Centros de Investigación", href: "#investigacion", icon: Microscope },
-          { title: "Revista Científica", href: "#investigacion", icon: BookOpen },
-          { title: "Publicaciones", href: "#investigacion", icon: BookOpen },
-          { title: "Semilleros", href: "#investigacion", icon: Users },
-        ],
-      },
-      {
-        heading: "Innovación",
-        items: [
-          { title: "Vinculación Empresarial", href: "#empresas", icon: Building2 },
-          { title: "Emprendimiento", href: "#emprendimiento", icon: ArrowRight },
-          { title: "Proyectos Comunitarios", href: "#comunidad", icon: Heart },
-          { title: "Convenios Internacionales", href: "#convenios", icon: Globe },
-        ],
-      },
-    ],
-    featured: {
-      title: "Investigación con impacto",
-      description: "Generamos conocimiento para transformar la sociedad dominicana.",
-      href: "#investigacion",
-      image: "/ucateci/research-lab.jpg",
-    },
-  },
-  {
-    label: "Vida Universitaria",
-    href: "#vida",
-    columns: [
-      {
-        heading: "Servicios",
-        items: [
-          { title: "Biblioteca", href: "#servicios", icon: BookOpen },
-          { title: "Clínica UCATECI", href: "#servicios", icon: Stethoscope },
-          { title: "Pastoral Universitaria", href: "#servicios", icon: Heart },
-          { title: "Deportes", href: "#vida", icon: Users },
-        ],
-      },
-      {
-        heading: "Estudiantes",
-        items: [
-          { title: "Aula Virtual", href: "#acceso", icon: Globe },
-          { title: "Portal del Estudiante", href: "#acceso", icon: Users },
-          { title: "Becas y Ayudas", href: "#admisiones", icon: GraduationCap },
-          { title: "Movilidad Internacional", href: "#vida", icon: Globe },
-        ],
-      },
-    ],
-    featured: {
-      title: "Más que una carrera",
-      description: "Descubre la experiencia completa que UCATECI te ofrece.",
-      href: "#vida",
-      image: "/ucateci/student-life.jpg",
-    },
-  },
-  {
-    label: "Campus y Alianzas",
-    href: "#campus",
-    columns: [
-      {
-        heading: "Campus",
-        items: [
-          { title: "Campus La Vega", href: "#la-vega", icon: MapPin, description: "Sede principal en La Vega" },
-          { title: "Campus Constanza", href: "/campus/constanza", icon: MapPin, description: "Formación con enfoque rural y ambiental" },
-        ],
-      },
-      {
-        heading: "Alianzas",
-        items: [
-          { title: "Centro Educacional Bonao (CEBUCATECI)", href: "/campus/ceb", icon: BookOpen, description: "Centro educativo aliado" },
-          { title: "Convenios con colegios", href: "#alianzas", icon: Globe, description: "Articulación con colegios y programas preuniversitarios" },
-          { title: "Extensiones y sedes", href: "#extensiones", icon: Building2 },
-        ],
-      },
-    ],
-    featured: {
-      title: "Campus y alianzas estratégicas",
-      description: "Conoce nuestras sedes, extensiones y alianzas con centros educativos en todo el país.",
-      href: "#campus",
-      image: "/ucateci/campus-aerial.jpg",
-    },
-  },
-]
-
-const SEARCH_ITEMS = {
-  carreras: [
-    "Medicina",
-    "Odontología",
-    "Enfermería",
-    "Derecho",
-    "Psicología",
-    "Administración de Empresas",
-    "Contabilidad",
-    "Ingeniería Civil",
-    "Ingeniería Industrial",
-    "Ingeniería de Sistemas",
-    "Educación Básica",
-    "Arquitectura",
-  ],
-  servicios: [
-    { name: "Aula Virtual", href: "#acceso" },
-    { name: "Portal del Estudiante", href: "#acceso" },
-    { name: "Biblioteca Digital", href: "#servicios" },
-    { name: "Correo Institucional", href: "#acceso" },
-    { name: "Pagos en Línea", href: "#acceso" },
-    { name: "Calendario Académico", href: "#calendario" },
-  ],
-  paginas: [
-    { name: "Admisiones", href: "#admisiones" },
-    { name: "Becas", href: "#admisiones" },
-    { name: "Tour Virtual", href: "#tour" },
-    { name: "Noticias", href: "#noticias" },
-    { name: "Contacto", href: "#contacto" },
-    { name: "Transparencia", href: "#transparencia" },
-  ],
-}
+import { MEGA_MENUS, SEARCH_ITEMS } from "@/lib/data"
+import { AdmissionsWizard } from "./admissions-wizard"
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
@@ -275,7 +73,7 @@ export function SiteHeader() {
             </span>
             <span className="hidden lg:flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
-              La Vega, RD
+              La Vega, República Dominicana
             </span>
           </div>
           <div className="flex items-center gap-3 md:gap-4">
@@ -330,7 +128,8 @@ export function SiteHeader() {
                     type="button"
                     onMouseEnter={() => setActiveMenu(menu.label)}
                     onFocus={() => setActiveMenu(menu.label)}
-                    aria-expanded={activeMenu === menu.label}
+                    aria-expanded={activeMenu === menu.label ? true : false}
+                    aria-haspopup="menu"
                     className="rounded-full px-1.5 py-1.5 text-[12px] font-semibold text-foreground/80 transition-colors hover:bg-muted hover:text-brand-navy data-[active=true]:bg-muted data-[active=true]:text-brand-navy 2xl:px-2 2xl:text-[13px]"
                     data-active={activeMenu === menu.label}
                   >
@@ -368,13 +167,14 @@ export function SiteHeader() {
               <span className="sr-only">Buscar carreras, servicios</span>
             </button>
 
-            <Button
-              asChild
-              size="sm"
-              className="hidden bg-brand-red text-accent-foreground hover:bg-brand-red/90 md:inline-flex"
-            >
-              <Link href="#admisiones">Admisiones</Link>
-            </Button>
+            <AdmissionsWizard>
+              <Button
+                size="sm"
+                className="hidden bg-brand-red text-accent-foreground hover:bg-brand-red/90 md:inline-flex"
+              >
+                Admisiones
+              </Button>
+            </AdmissionsWizard>
 
             <Button asChild size="sm" variant="outline" className="hidden md:inline-flex bg-transparent">
               <Link href="#acceso">
@@ -416,11 +216,11 @@ export function SiteHeader() {
                     </div>
                   ))}
                   <div className="flex flex-col gap-2 border-t border-border pt-4">
-                    <Button asChild className="bg-brand-red text-accent-foreground hover:bg-brand-red/90">
-                      <Link href="#admisiones" onClick={() => setMobileOpen(false)}>
+                    <AdmissionsWizard>
+                      <Button className="bg-brand-red text-accent-foreground hover:bg-brand-red/90">
                         Solicitar Admisión
-                      </Link>
-                    </Button>
+                      </Button>
+                    </AdmissionsWizard>
                     <Button asChild variant="outline">
                       <Link href="#acceso" onClick={() => setMobileOpen(false)}>
                         <LogIn className="h-4 w-4" /> Portal del Estudiante

@@ -23,44 +23,44 @@ const columns = [
   {
     title: "Institucional",
     links: [
-      { label: "Mision y vision", href: "#nosotros" },
-      { label: "Historia", href: "#historia" },
-      { label: "Rectoria", href: "#nosotros" },
+      { label: "Misión y Visión", href: "#nosotros" },
+      { label: "Historia y Legado", href: "#historia" },
+      { label: "Rectoría", href: "#nosotros" },
       { label: "Transparencia", href: "#transparencia" },
-      { label: "Identidad catolica", href: "#nosotros" },
-      { label: "Memoria institucional", href: "#noticias" },
+      { label: "Identidad Católica", href: "#nosotros" },
+      { label: "Memoria Institucional", href: "#noticias" },
     ],
   },
   {
-    title: "Academico",
+    title: "Académico",
     links: [
       { label: "Facultades", href: "#oferta" },
-      { label: "Carreras de grado", href: "#oferta" },
+      { label: "Carreras de Grado", href: "#oferta" },
       { label: "Postgrados", href: "#oferta" },
-      { label: "Educacion continua", href: "#servicios" },
-      { label: "Calendario academico", href: "#calendario" },
-      { label: "Biblioteca digital", href: "#recursos" },
+      { label: "Educación Continua", href: "#servicios" },
+      { label: "Calendario Académico", href: "#calendario" },
+      { label: "Biblioteca Digital", href: "#recursos" },
     ],
   },
   {
-    title: "Servicios",
+    title: "Servicios Estudiantiles",
     links: [
-      { label: "Aula virtual", href: "#acceso" },
-      { label: "Portal del estudiante", href: "#acceso" },
-      { label: "Correo institucional", href: "#acceso" },
-      { label: "Pagos en linea", href: "#acceso" },
-      { label: "Bolsa de empleo", href: "#servicios" },
-      { label: "Clinica universitaria", href: "#servicios" },
+      { label: "Aula Virtual", href: "#acceso" },
+      { label: "Portal del Estudiante", href: "#acceso" },
+      { label: "Correo Institucional", href: "#acceso" },
+      { label: "Pagos en Línea", href: "#acceso" },
+      { label: "Bolsa de Empleo", href: "#servicios" },
+      { label: "Clínica Universitaria", href: "#servicios" },
     ],
   },
   {
-    title: "Campus y alianzas",
+    title: "Sedes y Alianzas",
     links: [
-      { label: "Campus La Vega", href: "#campus" },
-      { label: "Campus Constanza", href: "/campus/constanza" },
-      { label: "CEBUCATECI", href: "/campus/ceb" },
-      { label: "Alianza con colegios", href: "#campus" },
-      { label: "Extensiones y sedes", href: "#campus" },
+      { label: "Sede Central La Vega", href: "#campus" },
+      { label: "Recinto Constanza", href: "/campus/constanza" },
+      { label: "Centro Educacional Bonao", href: "/campus/ceb" },
+      { label: "Alianza Colegial", href: "#campus" },
+      { label: "Extensiones", href: "#campus" },
     ],
   },
 ]
@@ -115,10 +115,10 @@ export function SiteFooter() {
       setStatus({
         tone: "success",
         title: "Listo, ya quedaste suscrito.",
-        description: "Recibiras noticias, convocatorias y eventos relevantes. No enviamos spam.",
+        description: "Recibiras noticias institucionales y académicas relevantes. No enviamos spam.",
       })
       toast.success("Suscripcion completada", {
-        description: "Ahora recibiras novedades institucionales en tu correo.",
+        description: "Ahora recibiras comunicados de la universidad en tu correo.",
       })
     } catch {
       setStatus({
@@ -150,11 +150,11 @@ export function SiteFooter() {
       <div className="relative border-b border-brand-cream/10">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:px-8">
           <div>
-            <h3 className="font-serif text-2xl font-bold text-brand-cream">Mantente al dia con UCATECI</h3>
+            <h3 className="font-serif text-2xl font-bold text-brand-cream">Comunidad UCATECI</h3>
             <p className="mt-2 max-w-md text-sm text-brand-cream/70">
-              Recibe noticias institucionales, convocatorias academicas y eventos directamente en tu correo.
+              Recibe los últimos comunicados institucionales, noticias de investigación y fechas académicas importantes directamente en tu correo.
             </p>
-            <p className="mt-3 text-xs text-brand-cream/55">Te enviaremos solo contenido relevante, sin saturar tu bandeja.</p>
+            <p className="mt-3 text-xs text-brand-cream/55">Te enviaremos únicamente información de valor para tu vida académica.</p>
           </div>
 
           <div className="space-y-4">
@@ -162,7 +162,7 @@ export function SiteFooter() {
             <form onSubmit={handleSubmit} className="space-y-3">
               <div className="space-y-2">
                 <label htmlFor="newsletter-email" className="text-sm font-medium text-brand-cream">
-                  Correo para recibir novedades
+                  Correo electrónico institucional o personal
                 </label>
                 <Input
                   id="newsletter-email"
@@ -177,8 +177,8 @@ export function SiteFooter() {
                 />
                 <p className={`text-xs ${value.email.length > 0 && !isValidEmail ? "text-rose-200" : "text-brand-cream/60"}`}>
                   {value.email.length > 0 && !isValidEmail
-                    ? "Revisa el formato del correo para poder registrarte."
-                    : "Usaremos este correo para avisarte sobre admisiones, eventos y recursos."}
+                    ? "Formato de correo inválido."
+                    : "Para estudiantes: puedes usar tu cuenta @ucateci.edu.do"}
                 </p>
               </div>
 
@@ -187,7 +187,7 @@ export function SiteFooter() {
                   {isSubmitting ? (
                     <>
                       <Spinner className="h-4 w-4" />
-                      Guardando...
+                      Procesando...
                     </>
                   ) : (
                     <>
@@ -206,7 +206,7 @@ export function SiteFooter() {
                     setStatus({
                       tone: "info",
                       title: "Campo limpiado.",
-                      description: "Puedes escribir otro correo cuando quieras.",
+                      description: "Ingresa una nueva dirección de correo.",
                     })
                   }}
                   disabled={!value.email}
@@ -231,12 +231,12 @@ export function SiteFooter() {
             </div>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-brand-cream/70">
-            Universidad Catolica Tecnologica del Cibao. Institucion de educacion superior al servicio de la verdad, formando lideres con excelencia academica, valores cristianos y compromiso social desde 1983.
+            Universidad Católica Tecnológica del Cibao. Institución de educación superior dedicada a la búsqueda de la verdad, formando profesionales éticos, con vocación de servicio y compromiso social desde 1983.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-brand-cream/80">
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
-              Av. Universitaria, esq. Calle Victor Estrella, La Vega 41000, R.D.
+              Sede Central: Av. Universitaria esq. Calle Víctor Estrella, La Vega 41000, República Dominicana.
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
@@ -278,14 +278,14 @@ export function SiteFooter() {
         ))}
 
         <div className="md:col-span-2">
-          <h3 className="mb-4 font-serif font-semibold text-brand-gold">Atencion</h3>
+          <h3 className="mb-4 font-serif font-semibold text-brand-gold">Horario Administrativo</h3>
           <ul className="space-y-2.5 text-sm text-brand-cream/75">
-            <li>Lun - Vie: 8:00 a.m. - 6:00 p.m.</li>
-            <li>Sabados: 8:00 a.m. - 1:00 p.m.</li>
+            <li>Lunes - Viernes: 8:00 a.m. - 6:00 p.m.</li>
+            <li>Sábados: 8:00 a.m. - 1:00 p.m.</li>
             <li>Domingos: Cerrado</li>
           </ul>
           <a href="#contacto" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-gold transition-colors hover:text-brand-cream">
-            Ver opciones de contacto
+            Ver directorio académico
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
@@ -293,16 +293,16 @@ export function SiteFooter() {
 
       <div className="relative border-t border-brand-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-brand-cream/60 sm:px-6 md:flex-row lg:px-8">
-          <p>© {new Date().getFullYear()} UCATECI · Universidad Catolica Tecnologica del Cibao. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} UCATECI · Universidad Católica Tecnológica del Cibao. Todos los derechos reservados.</p>
           <div className="flex flex-wrap items-center gap-5">
             <a href="#contacto" className="hover:text-brand-gold">
-              Politica de privacidad
+              Política de Privacidad
             </a>
             <a href="#contacto" className="hover:text-brand-gold">
-              Terminos de uso
+              Reglamentos Estudiantiles
             </a>
             <a href="#contacto" className="hover:text-brand-gold">
-              Accesibilidad
+              Portal de Transparencia
             </a>
           </div>
         </div>

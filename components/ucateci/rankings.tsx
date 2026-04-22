@@ -4,22 +4,22 @@ const ACCREDITATIONS = [
   {
     title: "MESCyT",
     subtitle: "Ministerio de Educación Superior",
-    description: "Universidad reconocida oficialmente desde 1983",
+    description: "Universidad reconocida oficialmente por el Estado dominicano desde 1983",
   },
   {
     title: "ADAAC",
     subtitle: "Acreditación de Calidad",
-    description: "Certificación de excelencia académica dominicana",
+    description: "Certificación de excelencia y mejora continua académica",
   },
   {
     title: "AUSJAL",
     subtitle: "Red de Universidades Jesuitas",
-    description: "Miembro de la red latinoamericana de universidades",
+    description: "Miembro de la red latinoamericana de instituciones de educación superior",
   },
   {
     title: "ODUCAL",
     subtitle: "Universidades Católicas",
-    description: "Organización de universidades católicas de América Latina",
+    description: "Organización de universidades católicas de América Latina y el Caribe",
   },
 ]
 
@@ -35,13 +35,13 @@ export function Rankings() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start lg:gap-16">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Reconocimientos</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Calidad académica certificada</span>
             <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl text-balance">
-              Calidad reconocida nacional e internacionalmente
+              Excelencia reconocida a nivel nacional e internacional
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              UCATECI cuenta con acreditaciones y membresías que avalan nuestra excelencia académica, permitiendo a
-              nuestros egresados competir en los mercados laborales más exigentes.
+              UCATECI cuenta con acreditaciones y membresías que avalan nuestra calidad educativa, permitiendo a
+              nuestros egresados competir con confianza en los escenarios profesionales más exigentes.
             </p>
 
             <div className="mt-8 space-y-3">

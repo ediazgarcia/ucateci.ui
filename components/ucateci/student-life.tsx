@@ -11,21 +11,21 @@ const ITEMS = [
   },
   {
     title: "Pastoral universitaria",
-    subtitle: "Retiros y voluntariado",
+    subtitle: "Retiros, voluntariado y acompañamiento espiritual",
     image: "/ucateci/graduation.jpg",
     size: "",
     href: "#pastoral",
   },
   {
     title: "Arte y cultura",
-    subtitle: "Coro, danza, teatro",
+    subtitle: "Coro, danza, teatro y expresión artística",
     image: "/ucateci/library.jpg",
     size: "",
     href: "#cultura",
   },
   {
     title: "Movilidad internacional",
-    subtitle: "25+ convenios activos",
+    subtitle: "25+ convenios activos con universidades",
     image: "/ucateci/students-campus.jpg",
     size: "col-span-2",
     href: "#movilidad",
@@ -38,13 +38,13 @@ export function StudentLife() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Vida Universitaria</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Vida universitaria</span>
             <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
-              Una experiencia que va más allá del aula
+              La formación integral va más allá del aula
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Deportes, arte, pastoral y voluntariado. Descubre todo lo que la comunidad UCATECI te ofrece para
-              crecer como persona.
+              Deportes, expresión artística, pastoral y voluntariado. Descubre todo lo que la comunidad UCATECI te ofrece para
+              crecer como persona y desarrollar tu vocación de servicio.
             </p>
           </div>
           <Link

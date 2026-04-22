@@ -1,45 +1,7 @@
 "use client"
 
 import { Calendar, Clock, MapPin, ArrowUpRight } from "lucide-react"
-
-const events = [
-  {
-    day: "22",
-    month: "Abr",
-    weekday: "Miércoles",
-    title: "Jornada de Investigación Científica 2026",
-    time: "08:30 a.m. – 04:00 p.m.",
-    place: "Auditorio Padre Camilo Thomén",
-    tag: "Académico",
-  },
-  {
-    day: "05",
-    month: "May",
-    weekday: "Martes",
-    title: "Feria de Admisiones: Carreras de Grado",
-    time: "09:00 a.m. – 02:00 p.m.",
-    place: "Plaza central del campus",
-    tag: "Admisiones",
-  },
-  {
-    day: "18",
-    month: "May",
-    weekday: "Lunes",
-    title: "Misa universitaria por el Día del Estudiante",
-    time: "11:00 a.m.",
-    place: "Capilla Santa María, UCATECI",
-    tag: "Pastoral",
-  },
-  {
-    day: "07",
-    month: "Jun",
-    weekday: "Domingo",
-    title: "Graduación Extraordinaria · Promoción 2025-III",
-    time: "04:00 p.m.",
-    place: "Gran Teatro del Cibao",
-    tag: "Institucional",
-  },
-]
+import { UPCOMING_EVENTS } from "@/lib/data"
 
 export function EventsCalendar() {
   return (
@@ -49,12 +11,7 @@ export function EventsCalendar() {
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.08] pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-          backgroundSize: "28px 28px",
-        }}
+        className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_30%,white_1px,transparent_0)] bg-[length:24px_24px]"
       />
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-red to-brand-gold" />
 
@@ -62,14 +19,13 @@ export function EventsCalendar() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand-gold font-semibold mb-2">
-              Próximos eventos
+              Calendario académico
             </div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-balance">
               Agenda universitaria
             </h2>
             <p className="mt-2 text-brand-cream/75 max-w-xl">
-              Actividades académicas, culturales, pastorales e institucionales
-              para toda la comunidad UCATECI.
+              Jornadas académicas, actividades culturales, celebraciones pastorales y actos institucionales para toda la comunidad educativa.
             </p>
           </div>
           <a
@@ -83,7 +39,7 @@ export function EventsCalendar() {
         </div>
 
         <ul className="grid md:grid-cols-2 gap-4">
-          {events.map((e) => (
+          {UPCOMING_EVENTS.map((e) => (
             <li key={e.title}>
               <a
                 href="#"

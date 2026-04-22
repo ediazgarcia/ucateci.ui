@@ -6,79 +6,12 @@ import { ArrowRight, Calendar, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-
-type Category = "Todas" | "Institucional" | "Académica" | "Investigación" | "Cultural"
-
-const news: {
-  title: string
-  excerpt: string
-  category: Exclude<Category, "Todas">
-  date: string
-  featured?: boolean
-}[] = [
-  {
-    title:
-      "UCATECI gradúa a más de 800 nuevos profesionales en acto solemne",
-    excerpt:
-      "La promoción más numerosa del año recibió sus títulos en una ceremonia celebrada en el campus central. La rectoría destacó el compromiso académico de los egresados.",
-    category: "Institucional",
-    date: "14 Abr 2026",
-    featured: true,
-  },
-  {
-    title:
-      "Facultad de Ciencias de la Salud inaugura laboratorio de simulación clínica",
-    excerpt:
-      "El nuevo espacio cuenta con maniquíes de alta fidelidad para formación práctica en Medicina, Enfermería y Odontología.",
-    category: "Académica",
-    date: "08 Abr 2026",
-  },
-  {
-    title:
-      "Convocatoria abierta para el Fondo de Investigación UCATECI 2026",
-    excerpt:
-      "Docentes e investigadores pueden aplicar hasta el 30 de mayo con proyectos en salud, tecnología y ciencias sociales.",
-    category: "Investigación",
-    date: "02 Abr 2026",
-  },
-  {
-    title:
-      "Semana Cultural de la Virgen de la Altagracia llena el campus de arte",
-    excerpt:
-      "Conciertos, exposiciones y jornadas espirituales conmemoraron a la patrona de la República Dominicana.",
-    category: "Cultural",
-    date: "21 Ene 2026",
-  },
-  {
-    title:
-      "Admisiones abiertas para el cuatrimestre mayo-agosto 2026",
-    excerpt:
-      "La universidad abre inscripciones para carreras de grado, postgrado y técnico superior. Cupos limitados.",
-    category: "Institucional",
-    date: "28 Mar 2026",
-  },
-  {
-    title:
-      "UCATECI firma acuerdo con hospital docente para prácticas de Medicina",
-    excerpt:
-      "El convenio ampliará las plazas de rotación clínica en especialidades de alta demanda.",
-    category: "Académica",
-    date: "18 Mar 2026",
-  },
-]
-
-const categories: Category[] = [
-  "Todas",
-  "Institucional",
-  "Académica",
-  "Investigación",
-  "Cultural",
-]
+import { NEWS_ARTICLES, NEWS_CATEGORIES, type NewsCategory } from "@/lib/data"
 
 export function NewsSection() {
-  const [filter, setFilter] = useState<Category>("Todas")
+  const [filter, setFilter] = useState<NewsCategory>("Todas")
   const { ref, isVisible } = useScrollAnimation()
-  const filtered = news.filter(
+  const filtered = NEWS_ARTICLES.filter(
     (n) => filter === "Todas" || n.category === filter
   )
   const [featured, ...rest] = filtered
@@ -89,14 +22,14 @@ export function NewsSection() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand-red font-semibold mb-2">
-              Noticias y avisos
+              Noticias y comunicados
             </div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-navy text-balance">
-              Lo que está pasando en UCATECI
+              Actualidad académica e institucional
             </h2>
             <p className="mt-2 text-muted-foreground max-w-xl">
-              Actualidad institucional, logros académicos, investigación y vida
-              universitaria.
+              Mantente informado sobre logros académicos, investigación, vida
+              universitaria y eventos de la comunidad UCATECI.
             </p>
           </div>
 
@@ -105,13 +38,13 @@ export function NewsSection() {
             aria-label="Filtrar noticias por categoría"
             className="flex flex-wrap gap-2"
           >
-            {categories.map((c) => {
+            {NEWS_CATEGORIES.map((c) => {
               const active = filter === c
               return (
                 <button
                   key={c}
                   role="tab"
-                  aria-selected={active}
+                  aria-selected={active ? true : false}
                   onClick={() => setFilter(c)}
                   className={cn(
                     "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
@@ -163,12 +96,7 @@ export function NewsSection() {
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 30% 40%, white 1px, transparent 0)",
-                      backgroundSize: "18px 18px",
-                    }}
+                    className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_40%,white_1px,transparent_0)] bg-[length:18px_18px]"
                   />
                   <div className="absolute bottom-4 left-4 flex items-center gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-brand-gold px-3 py-1 text-xs font-semibold text-brand-navy">

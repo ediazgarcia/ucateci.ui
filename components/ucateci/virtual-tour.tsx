@@ -10,8 +10,8 @@ const DRONE_360_EMBED_URL =
 const POINTS = [
   {
     id: "rectoria",
-    label: "Rectoría",
-    description: "Edificio principal con oficinas administrativas y la capilla universitaria.",
+    label: "Rectoría y Capilla",
+    description: "Centro administrativo y corazón espiritual de nuestra comunidad educativa.",
     image: "/ucateci/campus-aerial.jpg",
     x: 22,
     y: 38,
@@ -19,23 +19,23 @@ const POINTS = [
   {
     id: "biblioteca",
     label: "Biblioteca Central",
-    description: "Más de 40,000 volúmenes y acceso a bases de datos internacionales.",
+    description: "Espacio dedicado a la investigación con más de 40,000 volúmenes y recursos digitales.",
     image: "/ucateci/library.jpg",
     x: 55,
     y: 30,
   },
   {
     id: "medicina",
-    label: "Facultad de Medicina",
-    description: "Laboratorios de última generación y simuladores clínicos.",
+    label: "Facultad de Ciencias de la Salud",
+    description: "Laboratorios especializados y simuladores clínicos para una formación médica de vanguardia.",
     image: "/ucateci/research-lab.jpg",
     x: 72,
     y: 55,
   },
   {
     id: "deportes",
-    label: "Área Deportiva",
-    description: "Canchas, gimnasio y espacios de recreación al aire libre.",
+    label: "Complejo Deportivo",
+    description: "Canchas y áreas recreativas para el desarrollo físico y el esparcimiento estudiantil.",
     image: "/ucateci/student-life.jpg",
     x: 38,
     y: 70,
@@ -69,13 +69,12 @@ export function VirtualTour() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Tour Virtual</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Explora UCATECI</span>
             <h2 className="mt-3 font-serif text-3xl font-bold md:text-4xl lg:text-5xl text-balance">
-              Descubre nuestro campus sin salir de casa
+              Tu futuro campus te espera
             </h2>
             <p className="mt-4 text-base leading-relaxed text-primary-foreground/85">
-              Recorre los espacios donde tus hijos estudiarán. Explora aulas, laboratorios, biblioteca y zonas
-              deportivas con un clic y visualiza un video 360 con dron en reproducción automática.
+              Recorre nuestras instalaciones y descubre el entorno diseñado para tu desarrollo académico, humano y espiritual. Explora aulas, laboratorios, biblioteca y zonas de esparcimiento mediante nuestra vista interactiva.
             </p>
 
             <div className="mt-8 space-y-2">
@@ -83,7 +82,7 @@ export function VirtualTour() {
                 <button
                   key={p.id}
                   onClick={() => setActive(p.id)}
-                  aria-pressed={p.id === active}
+                  aria-pressed={active === p.id ? true : false}
                   className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-all ${
                     p.id === active
                       ? "border-accent bg-accent/10"
@@ -110,7 +109,7 @@ export function VirtualTour() {
               href="#tour-360-video"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:bg-accent/90"
             >
-              <PlayCircle className="h-4 w-4" /> Iniciar video 360° con dron
+              <PlayCircle className="h-4 w-4" /> Iniciar recorrido 360°
             </Link>
           </div>
 
@@ -130,8 +129,8 @@ export function VirtualTour() {
                 />
                 <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 text-xs font-semibold text-foreground">
                   {isTourInView
-                    ? "Video 360° · con audio"
-                    : "Video 360° pausado fuera de la sección"}
+                    ? "Recorrido 360°"
+                    : "Video pausado"}
                 </div>
               </div>
             </div>
@@ -143,6 +142,10 @@ export function VirtualTour() {
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
+              <div
+                className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:24px_24px]"
+                aria-hidden="true"
+              />
 
               {/* Hotspots */}
               {POINTS.map((p) => (
@@ -151,6 +154,7 @@ export function VirtualTour() {
                   onClick={() => setActive(p.id)}
                   aria-label={`Ver ${p.label}`}
                   className="absolute"
+                  // eslint-disable-next-line react/forbid-dom-props -- dynamic positioning requires inline style
                   style={{ left: `${p.x}%`, top: `${p.y}%`, transform: "translate(-50%, -50%)" }}
                 >
                   <span className="relative flex h-4 w-4">

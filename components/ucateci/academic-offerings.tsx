@@ -2,10 +2,6 @@
 
 import { useMemo, useRef, useState } from "react"
 import {
-  Stethoscope,
-  Cog,
-  BookOpen,
-  Building2,
   ArrowUpRight,
   GraduationCap,
   Search,
@@ -16,97 +12,7 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
-
-type FacultyKey = "salud" | "ingenieria" | "humanidades" | "economicas"
-type Modality = "Presencial" | "Semipresencial"
-
-type Career = {
-  name: string
-  duration: string
-  modality: Modality
-  faculty: FacultyKey
-  trending?: boolean
-}
-
-const FACULTIES: {
-  key: FacultyKey
-  name: string
-  short: string
-  icon: React.ElementType
-  description: string
-  color: string
-}[] = [
-  {
-    key: "salud",
-    name: "Ciencias de la Salud",
-    short: "Salud",
-    icon: Stethoscope,
-    description:
-      "Formamos profesionales comprometidos con el cuidado integral de la persona, con sólida base científica, ética y humanista.",
-    color: "bg-brand-red/10 text-brand-red",
-  },
-  {
-    key: "ingenieria",
-    name: "Ciencias de la Ingeniería",
-    short: "Ingeniería",
-    icon: Cog,
-    description:
-      "Ingenieros capaces de diseñar soluciones tecnológicas sostenibles que impulsan el desarrollo del país y la región.",
-    color: "bg-brand-navy/10 text-brand-navy",
-  },
-  {
-    key: "humanidades",
-    name: "Ciencias y Humanidades",
-    short: "Humanidades",
-    icon: BookOpen,
-    description:
-      "Profesionales de la educación, la comunicación y las ciencias sociales al servicio del bien común y la cultura.",
-    color: "bg-brand-gold/20 text-brand-navy",
-  },
-  {
-    key: "economicas",
-    name: "Ciencias Económicas y Sociales",
-    short: "Económicas",
-    icon: Building2,
-    description:
-      "Líderes para la gestión empresarial, la administración pública y el desarrollo económico con enfoque ético.",
-    color: "bg-brand-navy/10 text-brand-navy",
-  },
-]
-
-const CAREERS: Career[] = [
-  { name: "Doctor en Medicina", duration: "6 años", modality: "Presencial", faculty: "salud", trending: true },
-  { name: "Licenciatura en Enfermería", duration: "4 años", modality: "Presencial", faculty: "salud" },
-  { name: "Doctor en Odontología", duration: "5 años", modality: "Presencial", faculty: "salud", trending: true },
-  { name: "Licenciatura en Bioanálisis", duration: "4 años", modality: "Presencial", faculty: "salud" },
-  { name: "Licenciatura en Farmacia", duration: "4 años", modality: "Presencial", faculty: "salud" },
-  { name: "Licenciatura en Imágenes Médicas", duration: "4 años", modality: "Presencial", faculty: "salud" },
-  { name: "Licenciatura en Terapia Física", duration: "4 años", modality: "Presencial", faculty: "salud" },
-  { name: "Licenciatura en Nutrición y Dietética", duration: "4 años", modality: "Presencial", faculty: "salud" },
-
-  { name: "Ingeniería Civil", duration: "5 años", modality: "Presencial", faculty: "ingenieria", trending: true },
-  { name: "Ingeniería Industrial", duration: "5 años", modality: "Presencial", faculty: "ingenieria" },
-  { name: "Ingeniería Sistemas y Computación", duration: "4 años", modality: "Presencial", faculty: "ingenieria", trending: true },
-  { name: "Ingeniería Electromecánica", duration: "5 años", modality: "Presencial", faculty: "ingenieria" },
-  { name: "Ingeniería Agronómica", duration: "5 años", modality: "Presencial", faculty: "ingenieria" },
-  { name: "Arquitectura", duration: "5 años", modality: "Presencial", faculty: "ingenieria" },
-  { name: "Licenciatura en Informática", duration: "4 años", modality: "Semipresencial", faculty: "ingenieria" },
-
-  { name: "Licenciatura en Educación Inicial", duration: "4 años", modality: "Semipresencial", faculty: "humanidades" },
-  { name: "Licenciatura en Educación Básica", duration: "4 años", modality: "Semipresencial", faculty: "humanidades" },
-  { name: "Licenciatura en Lenguas Modernas", duration: "4 años", modality: "Presencial", faculty: "humanidades" },
-  { name: "Licenciatura en Comunicación Social", duration: "4 años", modality: "Presencial", faculty: "humanidades" },
-  { name: "Licenciatura en Psicología", duration: "4 años", modality: "Presencial", faculty: "humanidades", trending: true },
-  { name: "Licenciatura en Filosofía", duration: "4 años", modality: "Presencial", faculty: "humanidades" },
-  { name: "Licenciatura en Teología", duration: "4 años", modality: "Presencial", faculty: "humanidades" },
-
-  { name: "Licenciatura en Administración de Empresas", duration: "4 años", modality: "Presencial", faculty: "economicas", trending: true },
-  { name: "Licenciatura en Contabilidad", duration: "4 años", modality: "Presencial", faculty: "economicas" },
-  { name: "Licenciatura en Mercadeo", duration: "4 años", modality: "Presencial", faculty: "economicas" },
-  { name: "Licenciatura en Negocios Internacionales", duration: "4 años", modality: "Presencial", faculty: "economicas" },
-  { name: "Licenciatura en Economía", duration: "4 años", modality: "Presencial", faculty: "economicas" },
-  { name: "Licenciatura en Derecho", duration: "4 años", modality: "Presencial", faculty: "economicas", trending: true },
-]
+import { FACULTIES, CAREERS, type FacultyKey, type Modality } from "@/lib/data"
 
 export function AcademicOfferings() {
   const [active, setActive] = useState<FacultyKey | "todas">("todas")
@@ -129,7 +35,7 @@ export function AcademicOfferings() {
   const filterSummary = [
     active !== "todas" ? `Facultad: ${FACULTIES.find((faculty) => faculty.key === active)?.short}` : null,
     modality !== "todas" ? `Modalidad: ${modality}` : null,
-    query.trim() ? `Busqueda: "${query.trim()}"` : null,
+    query.trim() ? `Búsqueda: "${query.trim()}"` : null,
   ].filter(Boolean) as string[]
 
   const clearFilters = () => {
@@ -144,10 +50,10 @@ export function AcademicOfferings() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">Oferta académica</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-brand-navy md:text-4xl lg:text-5xl text-balance">
-            Explora tu carrera ideal
+            Encuentra tu vocación profesional
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-            Filtra por facultad, modalidad o busca por nombre. Todas nuestras carreras están avaladas por el MESCyT.
+            Explora nuestras carreras por facultad, modalidad o nombre. Todos los programas están avalados por el MESCyT y diseñados para formar profesionales íntegros.
           </p>
         </div>
 
@@ -189,7 +95,7 @@ export function AcademicOfferings() {
           <div className="mt-5 flex flex-wrap gap-2">
             <button
               onClick={() => setActive("todas")}
-              aria-pressed={active === "todas"}
+              aria-pressed={active === "todas" ? true : false}
               className={cn(
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 active === "todas"
@@ -205,7 +111,7 @@ export function AcademicOfferings() {
                 <button
                   key={f.key}
                   onClick={() => setActive(f.key)}
-                  aria-pressed={active === f.key}
+                  aria-pressed={active === f.key ? true : false}
                   className={cn(
                     "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
                     active === f.key
@@ -228,7 +134,7 @@ export function AcademicOfferings() {
                 <button
                   key={m}
                   onClick={() => setModality(m)}
-                  aria-pressed={modality === m}
+                  aria-pressed={modality === m ? true : false}
                   className={cn(
                     "rounded-full px-3 py-1 text-xs font-medium transition-colors",
                     modality === m
@@ -248,7 +154,7 @@ export function AcademicOfferings() {
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground">
-              Usa Enter para ir directamente a los resultados y Escape para limpiar la busqueda.
+              Usa Enter para ir directamente a los resultados y Escape para limpiar la búsqueda.
             </p>
             <Button type="button" variant="outline" size="sm" onClick={clearFilters} disabled={!hasActiveFilters}>
               Limpiar filtros
@@ -295,7 +201,7 @@ export function AcademicOfferings() {
               <Search className="mx-auto h-8 w-8 text-muted-foreground" aria-hidden="true" />
               <p className="mt-3 font-serif text-lg text-brand-navy">Sin resultados</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                No encontramos carreras con los filtros actuales. Prueba con otra palabra o limpia los filtros para volver a empezar.
+                No encontramos carreras con los filtros actuales. Prueba con otra palabra o limpia los filtros.
               </p>
               <Button type="button" variant="outline" className="mt-5" onClick={clearFilters}>
                 Ver todas las carreras
@@ -349,8 +255,8 @@ export function AcademicOfferings() {
           <div className="flex items-center gap-4">
             <GraduationCap className="h-10 w-10 text-brand-gold" aria-hidden="true" />
             <div>
-              <div className="font-serif text-lg font-semibold">¿Ya te decidiste?</div>
-              <div className="text-sm text-brand-cream/80">Completa tu solicitud en línea en menos de 10 minutos.</div>
+              <div className="font-serif text-lg font-semibold">¿Ya encontraste tu carrera?</div>
+              <div className="text-sm text-brand-cream/80">Completa tu solicitud de admisión en línea en menos de 10 minutos.</div>
             </div>
           </div>
           <a

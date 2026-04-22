@@ -1,64 +1,4 @@
-import {
-  Library,
-  Microscope,
-  HeartPulse,
-  Globe2,
-  Briefcase,
-  Church,
-  Trophy,
-  MonitorPlay,
-} from "lucide-react"
-
-const services = [
-  {
-    icon: Library,
-    title: "Biblioteca Dr. Jesús María de Peña",
-    desc: "Más de 50,000 volúmenes físicos y acceso a bases de datos internacionales como EBSCO, ProQuest y JSTOR.",
-    href: "#",
-  },
-  {
-    icon: Microscope,
-    title: "Centros de Investigación",
-    desc: "Investigación aplicada en salud, tecnología, educación y ciencias sociales con publicaciones indexadas.",
-    href: "#",
-  },
-  {
-    icon: HeartPulse,
-    title: "Clínica Universitaria",
-    desc: "Atención médica, odontológica y psicológica para la comunidad UCATECI y el público en general.",
-    href: "#",
-  },
-  {
-    icon: Globe2,
-    title: "Internacionalización",
-    desc: "Programas de intercambio, doble titulación y convenios con más de 40 universidades del mundo.",
-    href: "#",
-  },
-  {
-    icon: Briefcase,
-    title: "Bolsa de Empleo",
-    desc: "Conectamos a estudiantes y egresados con empresas líderes del Cibao y el país.",
-    href: "#",
-  },
-  {
-    icon: Church,
-    title: "Pastoral Universitaria",
-    desc: "Acompañamiento espiritual, celebraciones litúrgicas y voluntariado social inspirado en el Evangelio.",
-    href: "#",
-  },
-  {
-    icon: Trophy,
-    title: "Deportes y Cultura",
-    desc: "Selecciones deportivas, grupos artísticos, coro universitario y actividades extracurriculares.",
-    href: "#",
-  },
-  {
-    icon: MonitorPlay,
-    title: "Educación Virtual",
-    desc: "Plataforma Moodle con cursos híbridos y totalmente en línea para mayor flexibilidad.",
-    href: "#",
-  },
-]
+import { SERVICES } from "@/lib/data"
 
 export function ServicesSection() {
   return (
@@ -67,23 +7,23 @@ export function ServicesSection() {
         <div className="grid md:grid-cols-12 gap-8 items-end mb-10">
           <div className="md:col-span-7">
             <div className="text-xs uppercase tracking-widest text-brand-red font-semibold mb-2">
-              Servicios universitarios
+              Servicios al estudiante
             </div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-navy text-balance">
-              Una experiencia universitaria integral, dentro y fuera del aula
+              Acompañamiento integral para tu formación universitaria
             </h2>
           </div>
           <div className="md:col-span-5">
             <p className="text-muted-foreground leading-relaxed">
-              En UCATECI entendemos que la formación va más allá de las clases.
-              Descubre los servicios que acompañan tu desarrollo académico,
-              profesional, personal y espiritual.
+              En UCATECI entendemos que la educación va más allá del aula.
+              Descubre los servicios académicos, pastorales y profesionales que
+              complementan tu desarrollo como persona y futuro profesional.
             </p>
           </div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {services.map(({ icon: Icon, title, desc, href }) => (
+          {SERVICES.map(({ icon: Icon, title, desc, href }) => (
             <a
               key={title}
               href={href}

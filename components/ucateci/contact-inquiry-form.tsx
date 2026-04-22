@@ -378,7 +378,7 @@ export function ContactInquiryForm({
                       "flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-colors",
                       isActive ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
                     )}
-                    aria-pressed={isActive}
+                    aria-pressed={isActive ? true : false}
                   >
                     <Icon className="h-4 w-4" aria-hidden="true" />
                     {option.label}

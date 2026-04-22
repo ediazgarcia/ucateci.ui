@@ -1,302 +1,305 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
 import {
-  Monitor,
-  BookMarked,
-  Mail,
+  GraduationCap,
+  Briefcase,
+  Users,
+  BookOpen,
+  Calendar,
   CreditCard,
   FileText,
-  CalendarDays,
-  GraduationCap,
-  Users,
-  Briefcase,
-  LogIn,
-  ArrowUpRight,
+  Building,
+  ArrowRight,
+  Library,
+  Mail,
+  Laptop,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 
-type RoleKey = "estudiantes" | "docentes" | "aspirantes" | "egresados"
+type Profile = "estudiantes" | "docentes" | "egresados" | "aspirantes"
 
-const roles: { key: RoleKey; label: string; icon: React.ElementType }[] = [
-  { key: "estudiantes", label: "Estudiantes", icon: GraduationCap },
-  { key: "docentes", label: "Docentes", icon: Users },
-  { key: "aspirantes", label: "Aspirantes", icon: LogIn },
-  { key: "egresados", label: "Egresados", icon: Briefcase },
-]
+const PROFILES = [
+  { id: "aspirantes", label: "Futuros Estudiantes" },
+  { id: "estudiantes", label: "Estudiantes Actuales" },
+  { id: "docentes", label: "Cuerpo Docente" },
+  { id: "egresados", label: "Egresados" },
+] as const
 
-const links: Record<
-  RoleKey,
-  { title: string; desc: string; icon: React.ElementType; href: string; tag?: string }[]
+const DATA: Record<
+  Profile,
+  {
+    title: string
+    description: string
+    links: { icon: any; label: string; href: string; desc: string }[]
+    featured: { title: string; subtitle: string; href: string; action: string }
+  }
 > = {
-  estudiantes: [
-    {
-      title: "Aula Virtual",
-      desc: "Plataforma Moodle con tus asignaturas",
-      icon: Monitor,
-      href: "#",
-      tag: "Moodle",
+  aspirantes: {
+    title: "Bienvenido a tu futuro profesional",
+    description: "Encuentra toda la información para iniciar tu vida universitaria en UCATECI.",
+    links: [
+      {
+        icon: FileText,
+        label: "Proceso de Admisión",
+        href: "#admisiones",
+        desc: "Requisitos y pasos a seguir",
+      },
+      {
+        icon: BookOpen,
+        label: "Oferta Académica",
+        href: "#oferta",
+        desc: "Conoce nuestras carreras",
+      },
+      {
+        icon: CreditCard,
+        label: "Becas y Ayudas",
+        href: "#becas",
+        desc: "Opciones de financiamiento",
+      },
+      {
+        icon: Building,
+        label: "Visita el Campus",
+        href: "#tour",
+        desc: "Agenda un recorrido",
+      },
+    ],
+    featured: {
+      title: "Admisiones 2026",
+      subtitle: "Inscripciones abiertas para el próximo cuatrimestre",
+      href: "#admisiones",
+      action: "Solicitar admisión",
     },
-    {
-      title: "Portal del Estudiante",
-      desc: "Notas, pagos, horarios y certificaciones",
-      icon: FileText,
-      href: "#",
+  },
+  estudiantes: {
+    title: "Servicios académicos y administrativos",
+    description: "Accede rápidamente a las plataformas y herramientas para tu día a día.",
+    links: [
+      {
+        icon: Laptop,
+        label: "Portal del Estudiante",
+        href: "#portal",
+        desc: "Calificaciones y selección",
+      },
+      {
+        icon: BookOpen,
+        label: "Aula Virtual",
+        href: "#moodle",
+        desc: "Clases y asignaciones",
+      },
+      {
+        icon: Mail,
+        label: "Correo Institucional",
+        href: "#correo",
+        desc: "Office 365 para estudiantes",
+      },
+      {
+        icon: Library,
+        label: "Biblioteca Virtual",
+        href: "#biblioteca",
+        desc: "Bases de datos y catálogos",
+      },
+      {
+        icon: CreditCard,
+        label: "Pagos en Línea",
+        href: "#pagos",
+        desc: "Caja virtual y estados",
+      },
+      {
+        icon: Calendar,
+        label: "Calendario Académico",
+        href: "#calendario",
+        desc: "Fechas importantes",
+      },
+    ],
+    featured: {
+      title: "Selección de Asignaturas",
+      subtitle: "Consulta tu fecha y hora de selección en el portal",
+      href: "#portal",
+      action: "Ir al portal",
     },
-    {
-      title: "Correo Institucional",
-      desc: "Microsoft 365 @est.ucateci.edu.do",
-      icon: Mail,
-      href: "#",
+  },
+  docentes: {
+    title: "Recursos para el cuerpo docente",
+    description: "Herramientas para la gestión académica, investigación y apoyo pedagógico.",
+    links: [
+      {
+        icon: Laptop,
+        label: "Portal Docente",
+        href: "#portal-docente",
+        desc: "Gestión de calificaciones",
+      },
+      {
+        icon: BookOpen,
+        label: "Entorno Virtual",
+        href: "#moodle-docente",
+        desc: "Gestión de cursos",
+      },
+      {
+        icon: FileText,
+        label: "Investigación",
+        href: "#investigacion",
+        desc: "Fondo y publicaciones",
+      },
+      {
+        icon: Mail,
+        label: "Correo Administrativo",
+        href: "#correo",
+        desc: "Acceso a webmail",
+      },
+    ],
+    featured: {
+      title: "Calendario de Evaluaciones",
+      subtitle: "Fechas límite de entrega de calificaciones",
+      href: "#calendario-docente",
+      action: "Ver calendario",
     },
-    {
-      title: "Biblioteca Virtual",
-      desc: "Libros, revistas y bases de datos",
-      icon: BookMarked,
-      href: "#",
+  },
+  egresados: {
+    title: "Red de egresados UCATECI",
+    description: "Mantente conectado con tu alma máter y accede a servicios exclusivos.",
+    links: [
+      {
+        icon: Briefcase,
+        label: "Bolsa de Empleo",
+        href: "#empleos",
+        desc: "Ofertas exclusivas",
+      },
+      {
+        icon: FileText,
+        label: "Solicitud de Documentos",
+        href: "#documentos",
+        desc: "Récord y certificaciones",
+      },
+      {
+        icon: GraduationCap,
+        label: "Educación Continua",
+        href: "#postgrado",
+        desc: "Maestrías y diplomados",
+      },
+      {
+        icon: Users,
+        label: "Asociación de Egresados",
+        href: "#asociacion",
+        desc: "Red de networking",
+      },
+    ],
+    featured: {
+      title: "Encuentro de Egresados",
+      subtitle: "Revive tu experiencia universitaria este 2026",
+      href: "#encuentro",
+      action: "Más información",
     },
-    {
-      title: "Pagos en Línea",
-      desc: "Mensualidades y servicios académicos",
-      icon: CreditCard,
-      href: "#",
-    },
-    {
-      title: "Calendario Académico",
-      desc: "Cuatrimestres, feriados y entregas",
-      icon: CalendarDays,
-      href: "#",
-    },
-  ],
-  docentes: [
-    {
-      title: "Aula Virtual Docente",
-      desc: "Gestiona tus cursos y estudiantes",
-      icon: Monitor,
-      href: "#",
-    },
-    {
-      title: "Portal Docente",
-      desc: "Registro de notas y asistencia",
-      icon: FileText,
-      href: "#",
-    },
-    {
-      title: "Correo Institucional",
-      desc: "@ucateci.edu.do",
-      icon: Mail,
-      href: "#",
-    },
-    {
-      title: "Recursos Docentes",
-      desc: "Formatos, guías y formación continua",
-      icon: BookMarked,
-      href: "#",
-    },
-    {
-      title: "Investigación",
-      desc: "Convocatorias y fondos de investigación",
-      icon: Briefcase,
-      href: "#",
-      tag: "Nuevo",
-    },
-    {
-      title: "Calendario Institucional",
-      desc: "Reuniones y jornadas académicas",
-      icon: CalendarDays,
-      href: "#",
-    },
-  ],
-  aspirantes: [
-    {
-      title: "Solicita tu Admisión",
-      desc: "Inscríbete al próximo cuatrimestre",
-      icon: LogIn,
-      href: "#",
-      tag: "Abierto",
-    },
-    {
-      title: "Oferta Académica",
-      desc: "Carreras de grado y postgrado",
-      icon: GraduationCap,
-      href: "#oferta",
-    },
-    {
-      title: "Becas y Financiamiento",
-      desc: "Programa de becas UCATECI y MESCyT",
-      icon: CreditCard,
-      href: "#",
-    },
-    {
-      title: "Prueba de Admisión",
-      desc: "Guía y fechas de la prueba POMA",
-      icon: FileText,
-      href: "#",
-    },
-    {
-      title: "Visita el Campus",
-      desc: "Agenda un tour guiado",
-      icon: CalendarDays,
-      href: "#",
-    },
-    {
-      title: "Contactar Admisiones",
-      desc: "Asesoría personalizada",
-      icon: Mail,
-      href: "#",
-    },
-  ],
-  egresados: [
-    {
-      title: "Red Alumni UCATECI",
-      desc: "Conecta con tu promoción",
-      icon: Users,
-      href: "#",
-    },
-    {
-      title: "Certificaciones Oficiales",
-      desc: "Solicita récord de notas y títulos",
-      icon: FileText,
-      href: "#",
-    },
-    {
-      title: "Bolsa de Empleo",
-      desc: "Oportunidades laborales exclusivas",
-      icon: Briefcase,
-      href: "#",
-    },
-    {
-      title: "Educación Continua",
-      desc: "Diplomados, maestrías y doctorados",
-      icon: GraduationCap,
-      href: "#",
-    },
-    {
-      title: "Eventos de Egresados",
-      desc: "Reuniones, charlas y networking",
-      icon: CalendarDays,
-      href: "#",
-    },
-    {
-      title: "Contacto Alumni",
-      desc: "Actualiza tus datos y mantente en contacto",
-      icon: Mail,
-      href: "#",
-    },
-  ],
+  },
 }
 
 export function QuickAccess() {
-  const [role, setRole] = useState<RoleKey>("estudiantes")
-  const items = links[role]
+  const [active, setActive] = useState<Profile>("aspirantes")
 
   return (
-    <section
-      id="acceso"
-      aria-labelledby="acceso-title"
-      className="relative -mt-10 md:-mt-16 lg:-mt-20 z-10"
-    >
+    <section className="bg-background py-12 md:py-20" id="accesos">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="surface-card overflow-hidden rounded-[1.75rem]">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-8 border-b border-border">
-            <div>
-              <div className="text-xs uppercase tracking-widest text-brand-red font-semibold mb-2">
-                Acceso rápido
-              </div>
-              <h2
-                id="acceso-title"
-                className="font-serif text-2xl md:text-3xl font-bold text-brand-navy text-balance"
-              >
-                ¿Quién eres hoy en UCATECI?
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground max-w-xl">
-                Selecciona tu perfil para ver los servicios y enlaces más relevantes.
-              </p>
-            </div>
+        <div className="text-center md:text-left mb-8">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-primary">
+            Accesos rápidos por perfil
+          </h2>
+          <p className="mt-2 text-muted-foreground text-sm md:text-base">
+            Selecciona tu perfil para encontrar información personalizada
+          </p>
+        </div>
 
-            <div
-              role="tablist"
-              aria-label="Perfiles de usuario"
-              className="inline-flex flex-wrap gap-1 rounded-[1.25rem] bg-muted p-1"
-            >
-              {roles.map(({ key, label, icon: Icon }) => {
-                const active = role === key
-                return (
-                  <button
-                    key={key}
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setRole(key)}
-                    className={cn(
-                      "inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                      active
-                        ? "bg-brand-navy text-brand-cream shadow"
-                        : "text-foreground/70 hover:text-brand-navy"
-                    )}
-                  >
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                    {label}
-                  </button>
-                )
-              })}
-            </div>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
+          <div className="w-full lg:w-64 shrink-0 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 hide-scrollbar">
+            {PROFILES.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setActive(p.id)}
+                className={cn(
+                  "flex-shrink-0 text-left px-5 py-3 rounded-xl font-medium transition-colors border",
+                  active === p.id
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-card text-foreground/80 border-border hover:border-primary/30 hover:bg-muted"
+                )}
+              >
+                {p.label}
+              </button>
+            ))}
           </div>
 
-          <div className="px-6 py-6 md:px-8 md:py-8">
-            <div className="rounded-[1.75rem] border border-border bg-muted/55 p-6 text-brand-navy shadow-[0_18px_35px_-30px_rgba(15,23,42,0.4)]">
-              <div className="sm:flex sm:items-center sm:justify-between sm:gap-6">
+          {/* Content Area */}
+          <div className="flex-1 min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="grid md:grid-cols-[1fr_280px] gap-6"
+              >
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-                    Campus y Alianzas
-                  </p>
-                  <h3 className="mt-3 text-2xl font-semibold text-brand-navy">
-                    Sedes, extensiones y colaboraciones estratégicas
+                  <h3 className="font-serif text-xl md:text-2xl font-semibold text-primary">
+                    {DATA[active].title}
                   </h3>
-                  <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                    Accede a los campus de La Vega y Constanza, nuestros centros educativos aliados y las extensiones académicas de UCATECI.
+                  <p className="mt-2 text-muted-foreground mb-6">
+                    {DATA[active].description}
                   </p>
+                  
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {DATA[active].links.map((link) => {
+                      const Icon = link.icon
+                      return (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          className="group flex items-start gap-4 p-4 rounded-xl border border-border bg-card hover:border-accent/40 transition-colors"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors shrink-0">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+                              {link.label}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-0.5">
+                              {link.desc}
+                            </div>
+                          </div>
+                        </Link>
+                      )
+                    })}
+                  </div>
                 </div>
-                <div className="mt-4 sm:mt-0">
-                  <Button asChild className="rounded-full bg-brand-red text-accent-foreground hover:bg-brand-red/90">
-                    <Link href="#campus">Ver Campus y Alianzas</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {items.map(({ title, desc, icon: Icon, href, tag }) => (
-                <Link
-                  key={title}
-                  href={href}
-                  className="interactive-lift group relative flex min-h-[12rem] items-start gap-4 overflow-hidden rounded-[1.5rem] border border-border bg-card/95 p-6 shadow-[0_18px_35px_-30px_rgba(15,23,42,0.4)] transition-colors hover:border-brand-red/20 hover:bg-muted/30 focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-                >
-                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-navy/0 via-brand-red/35 to-brand-gold/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-navy/6 text-brand-navy transition-colors group-hover:bg-brand-red group-hover:text-accent-foreground">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
+                {/* Featured Card */}
+                <div className="bg-gradient-to-br from-brand-navy to-brand-navy-deep rounded-2xl p-6 text-brand-cream flex flex-col justify-between relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                    <GraduationCap className="w-32 h-32" />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-semibold text-brand-navy">{title}</h3>
-                      {tag && (
-                        <span className="rounded-full bg-brand-gold/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-navy">
-                          {tag}
-                        </span>
-                      )}
+                  <div className="relative z-10">
+                    <div className="text-[10px] uppercase tracking-widest font-semibold text-brand-gold mb-2">
+                      Destacado
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {desc}
-                    </p>
+                    <div className="font-serif text-lg font-bold leading-tight mb-2">
+                      {DATA[active].featured.title}
+                    </div>
+                    <div className="text-sm text-brand-cream/80 line-clamp-3">
+                      {DATA[active].featured.subtitle}
+                    </div>
                   </div>
-                  <ArrowUpRight
-                    className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-red"
-                    aria-hidden="true"
-                  />
-                </Link>
-              ))}
-            </div>
+                  <Link
+                    href={DATA[active].featured.href}
+                    className="relative z-10 mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-gold group-hover:text-white transition-colors"
+                  >
+                    {DATA[active].featured.action}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

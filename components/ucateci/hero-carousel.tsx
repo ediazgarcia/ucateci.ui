@@ -83,7 +83,7 @@ export function HeroCarousel({
           return (
             <div
               key={item.title}
-              aria-hidden={!active}
+              aria-hidden={!active ? true : false}
               className={cn(
                 "absolute inset-0 transition-[opacity,transform] duration-[1200ms] ease-out",
                 active ? "opacity-100 scale-105" : "pointer-events-none opacity-0 scale-100",
@@ -182,7 +182,7 @@ export function HeroCarousel({
                   restartTimer()
                 }}
                 aria-label={`Ir al slide ${itemIndex + 1}`}
-                aria-selected={itemIndex === index}
+                aria-selected={itemIndex === index ? true : false}
                 role="tab"
                 className={cn(
                   "h-2 rounded-full transition-all duration-300",

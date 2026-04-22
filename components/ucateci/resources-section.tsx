@@ -14,25 +14,25 @@ const resources = [
   {
     icon: FileText,
     title: "Reglamento académico estudiantil",
-    desc: "Derechos, deberes y procedimientos académicos vigentes.",
+    desc: "Derechos, deberes y procedimientos académicos vigentes para toda la comunidad universitaria.",
     tag: "PDF",
   },
   {
     icon: BookOpenText,
     title: "Manual del estudiante de nuevo ingreso",
-    desc: "Guía completa para tus primeros pasos en UCATECI.",
+    desc: "Guía completa para tus primeros pasos en la vida universitaria de UCATECI.",
     tag: "PDF",
   },
   {
     icon: ScrollText,
     title: "Calendario académico 2026",
-    desc: "Cuatrimestres, periodos de inscripción y entrega de notas.",
+    desc: "Cuatrimestres, periodos de inscripción, evaluaciones y entrega de notas.",
     tag: "PDF",
   },
   {
     icon: FileSearch,
     title: "Guía de prácticas profesionales",
-    desc: "Requisitos, convenios y formatos oficiales.",
+    desc: "Requisitos, convenios institucionales y formatos oficiales para pasantías.",
     tag: "PDF",
   },
 ]
@@ -40,23 +40,23 @@ const resources = [
 const faqs = [
   {
     q: "¿Cómo inicio sesión en el Aula Virtual?",
-    a: "Ingresa con tu correo institucional y contraseña. Si es la primera vez, utiliza la opción 'Recuperar contraseña' o escribe a soporte@ucateci.edu.do.",
+    a: "Ingresa con tu correo institucional y contraseña. Si es la primera vez, utiliza la opción 'Recuperar contraseña' o escribe a soporte@ucateci.edu.do para asistencia técnica.",
   },
   {
     q: "¿Dónde pago la mensualidad?",
-    a: "Puedes pagar desde el Portal del Estudiante con tarjeta de crédito/débito o en los bancos asociados presentando tu factura UCATECI.",
+    a: "Puedes pagar desde el Portal del Estudiante con tarjeta de crédito/débito o en los bancos asociados presentando tu factura UCATECI. También puedes visitar la oficina de cobros en el campus.",
   },
   {
-    q: "¿Cómo solicito un récord de notas?",
-    a: "Accede al Portal del Estudiante › Servicios › Solicitud de documentos, paga el arancel y recibirás la notificación cuando esté listo.",
+    q: "¿Cómo solicito un récord de notas o certificación?",
+    a: "Accede al Portal del Estudiante › Servicios › Solicitud de documentos, paga el arancel correspondiente y recibirás la notificación cuando esté listo para retiro.",
   },
   {
     q: "¿Qué es la POMA y cuándo se aplica?",
-    a: "La POMA es la Prueba de Orientación y Medición Académica. Se aplica en fechas establecidas al inicio de cada proceso de admisión. Consulta calendario.",
+    a: "La POMA es la Prueba de Orientación y Medición Académica, un requisito de admisión. Se aplica en fechas establecidas al inicio de cada proceso. Consulta el calendario académico para próximas fechas.",
   },
   {
-    q: "¿Hay becas disponibles?",
-    a: "Sí. UCATECI ofrece becas académicas, deportivas, culturales y convenios con instituciones como MESCyT. Consulta el programa de becas en Admisiones.",
+    q: "¿Hay becas disponibles para nuevos estudiantes?",
+    a: "Sí. UCATECI ofrece becas académicas, deportivas, culturales y convenios con instituciones como el MESCyT. Consulta el programa completo de becas a través de la oficina de Admisiones.",
   },
 ]
 
@@ -69,14 +69,14 @@ export function ResourcesSection() {
         {/* Resources */}
         <div className="lg:col-span-5">
           <div className="text-xs uppercase tracking-widest text-brand-red font-semibold mb-2">
-            Recursos descargables
+            Recursos académicos
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-navy text-balance">
-            Documentos oficiales a un clic
+            Documentos oficiales a tu alcance
           </h2>
           <p className="mt-2 text-muted-foreground">
             Guías, reglamentos y manuales institucionales disponibles para toda
-            la comunidad.
+            la comunidad universitaria.
           </p>
 
           <ul className="mt-6 grid gap-3">
@@ -112,7 +112,7 @@ export function ResourcesSection() {
             Preguntas frecuentes
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-navy text-balance">
-            Las dudas más comunes, resueltas
+            Resolvemos tus dudas académicas
           </h2>
           <p className="mt-2 text-muted-foreground">
             Si no encuentras lo que buscas, escríbenos a{" "}
@@ -132,7 +132,7 @@ export function ResourcesSection() {
                 <li key={f.q}>
                   <button
                     onClick={() => setOpenIdx(open ? null : i)}
-                    aria-expanded={open}
+                    aria-expanded={open ? true : false}
                     className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-muted/60 transition-colors"
                   >
                     <span className="font-semibold text-brand-navy">

@@ -1,11 +1,12 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { AdmissionsWizard } from "./admissions-wizard"
 
 const steps = [
   "Completa la solicitud en línea",
-  "Presenta tu documentación",
-  "Realiza la prueba POMA",
-  "Recibe tu carta de admisión",
+  "Presenta tu documentación académica",
+  "Realiza la prueba de admisión POMA",
+  "Recibe tu carta de admisión oficial",
 ]
 
 export function AdmissionsCTA() {
@@ -29,22 +30,24 @@ export function AdmissionsCTA() {
                 Admisiones 2026
               </div>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-                Tu futuro profesional empieza con un solo paso.
+                Tu camino profesional comienza con un solo paso.
               </h2>
               <p className="mt-4 text-brand-cream/80 leading-relaxed max-w-lg">
                 Aplica a UCATECI y únete a una comunidad académica con más de 40
-                años formando líderes en República Dominicana. Asesoría
-                personalizada, becas disponibles y más de 40 carreras
-                acreditadas.
+                años formando profesionales íntegros en República Dominicana.
+                Asesoría personalizada, becas por mérito y más de 45 carreras
+                acreditadas por el MESCyT.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Button
-                  size="lg"
-                  className="bg-brand-red hover:bg-brand-red/90 text-accent-foreground"
-                >
-                  Iniciar solicitud
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <AdmissionsWizard>
+                  <Button
+                    size="lg"
+                    className="bg-brand-red hover:bg-brand-red/90 text-accent-foreground"
+                  >
+                    Iniciar solicitud
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </AdmissionsWizard>
                 <Button
                   size="lg"
                   variant="outline"
@@ -76,7 +79,7 @@ export function AdmissionsCTA() {
                 ))}
               </ol>
               <div className="mt-6 pt-2 text-xs text-brand-cream/60">
-                ¿Dudas?{" "}
+                ¿Dudas sobre el proceso?{" "}
                 <a
                   href="mailto:admisiones@ucateci.edu.do"
                   className="font-semibold text-brand-gold hover:underline"
