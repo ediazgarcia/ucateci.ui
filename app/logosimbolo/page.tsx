@@ -7,19 +7,22 @@ import { Palette } from "lucide-react"
 const colors = [
   {
     name: "Azul Royal",
-    hex: "#1F5BA8",
+    bgClass: "bg-brand-navy",
+    textClass: "text-brand-navy",
     description: "Representa el saber, la verdad científica y la profundidad académica de nuestra institución.",
     delay: 0.1
   },
   {
     name: "Rojo Institucional",
-    hex: "#C8202C",
+    bgClass: "bg-brand-red",
+    textClass: "text-brand-red",
     description: "Simboliza la fuerza, el dinamismo, el espíritu de servicio y el compromiso social.",
     delay: 0.2
   },
   {
     name: "Amarillo Vaticano",
-    hex: "#D4A437",
+    bgClass: "bg-brand-gold",
+    textClass: "text-brand-gold",
     description: "Incorporado en 2015 para representar la naturaleza católica y la fe que inspira nuestra filosofía.",
     delay: 0.3
   }
@@ -94,13 +97,12 @@ export default function LogosimboloPage() {
                 className="flex items-start gap-6 p-6 rounded-2xl bg-white dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow group"
               >
                 <div 
-                  className="w-16 h-16 rounded-2xl shadow-inner shrink-0 relative overflow-hidden"
-                  style={{ backgroundColor: color.hex }}
+                  className={`w-16 h-16 rounded-2xl shadow-inner shrink-0 relative overflow-hidden ${color.bgClass}`}
                 >
                   <div className="absolute inset-0 bg-black/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold m-0 mb-2" style={{ color: color.hex }}>
+                  <h4 className={`text-xl font-bold m-0 mb-2 ${color.textClass}`}>
                     {color.name}
                   </h4>
                   <p className="text-muted-foreground m-0 leading-relaxed">

@@ -34,9 +34,10 @@ export function InnerPageLayout({ title, subtitle, children, icon, backgroundIma
           className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
         >
           {backgroundImage ? (
-             <div 
-               className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-20 mix-blend-overlay"
-               style={{ backgroundImage: `url(${backgroundImage})` }}
+             <img 
+               src={backgroundImage}
+               alt=""
+               className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 mix-blend-overlay"
              />
           ) : (
              <div className="absolute inset-0 bg-noise opacity-40 dark:opacity-20" />
