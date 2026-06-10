@@ -46,7 +46,7 @@ export default function ResenaHistoricaPage() {
   return (
     <InnerPageLayout 
       title="Reseña Histórica"
-      subtitle="Más de cuatro décadas forjando profesionales y liderando el desarrollo académico en la región del Cibao."
+      subtitle="Más de cuatro décadas forjando profesionales y liderando el desarrollo académico de CEB-UCATECI en Bonao y el Cibao."
       icon={<Building2 className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <div className="max-w-4xl mx-auto py-12">
@@ -101,7 +101,7 @@ export default function ResenaHistoricaPage() {
           <div className="absolute inset-0 bg-noise opacity-20 mix-blend-overlay" />
           <h3 className="text-2xl font-bold mb-4 relative z-10 mt-0">El Legado Continúa</h3>
           <p className="text-white/80 text-lg m-0 relative z-10">
-            Bajo la actual dirección de Mons. Carlos Tomás Morel Diplán, UCATECI sigue su proceso de innovación, asegurando que su misión y valores católicos formen a las futuras generaciones de dominicanos.
+            Bajo la actual dirección de Mons. Carlos Tomás Morel Diplán, CEB-UCATECI sigue su proceso de innovación, asegurando que su misión y valores católicos formen a las futuras generaciones de Bonao y del Cibao.
           </p>
         </motion.div>
       </div>

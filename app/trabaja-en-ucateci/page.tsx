@@ -31,7 +31,7 @@ const vacantes = [
   {
     titulo: "Docente Clínico - Odontología",
     departamento: "Facultad de Ciencias de la Salud",
-    ubicacion: "Clínica UCATECI",
+    ubicacion: "Centro Educacional Bonao",
     tipo: "Tiempo Completo",
     publicado: "Hace 2 semanas",
     estado: "Cerrando pronto"
@@ -52,7 +52,7 @@ export default function TrabajaEnUcateciPage() {
   return (
     <InnerPageLayout 
       title="Bolsa de Empleo" 
-      subtitle="Descubre tu próximo paso profesional y forma parte del equipo que transforma la educación superior en el Cibao."
+      subtitle="Descubre tu próximo paso profesional y forma parte del equipo que transforma la educación en CEB-UCATECI, Bonao."
       icon={<Briefcase className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       

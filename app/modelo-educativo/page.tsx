@@ -7,7 +7,7 @@ export default function ModeloEducativoPage() {
   return (
     <InnerPageLayout 
       title="Modelo Educativo"
-      subtitle="El fundamento pedagógico y filosófico que orienta la formación integral en UCATECI."
+      subtitle="El fundamento pedagógico y filosófico que orienta la formación integral en CEB-UCATECI, Bonao."
       icon={<BookOpen className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <div className="flex flex-col items-center justify-center py-12 max-w-4xl mx-auto">
@@ -39,7 +39,7 @@ export default function ModeloEducativoPage() {
               Documento Institucional
             </h2>
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl font-light leading-relaxed">
-              Descargue el documento completo del Modelo Educativo de UCATECI, el cual establece los principios pedagógicos, filosóficos y metodológicos que guían nuestro accionar académico.
+              Descargue el documento completo del Modelo Educativo de CEB-UCATECI, el cual establece los principios pedagógicos, filosóficos y metodológicos que guían nuestro accionar académico en Bonao.
             </p>
             
             <motion.a 

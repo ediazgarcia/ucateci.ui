@@ -36,7 +36,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
-import { MEGA_MENUS, SEARCH_ITEMS } from "@/lib/data"
+import { CAMPUS_DATA, MEGA_MENUS, SEARCH_ITEMS } from "@/lib/data"
 import { AdmissionsWizard } from "./admissions-wizard"
 
 export function SiteHeader() {
@@ -72,15 +72,15 @@ export function SiteHeader() {
           <div className="flex min-w-0 items-center gap-3 md:gap-4">
             <span className="flex items-center gap-1.5">
               <Phone className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
-              (809) 573-1020
+              {CAMPUS_DATA.ceb.header.phone}
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
-              info@ucateci.edu.do
+              {CAMPUS_DATA.ceb.header.email}
             </span>
             <span className="hidden lg:flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
-              La Vega, República Dominicana
+              {CAMPUS_DATA.ceb.header.address}
             </span>
           </div>
           <div className="flex items-center gap-3 md:gap-4">
@@ -114,11 +114,11 @@ export function SiteHeader() {
       >
         <div className="mx-auto flex h-16 w-full max-w-[96rem] items-center gap-2 px-2 sm:px-4 lg:px-6 xl:px-8 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="Logo-UCATECI - Inicio">
+          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="CEB-UCATECI - Inicio">
             <div className="relative h-10 w-32 overflow-hidden rounded-lg bg-white p-1 sm:h-11 sm:w-36 md:h-12 md:w-40 xl:h-14 xl:w-48">
               <Image
-                src="/Logo-UCATECI.png"
-                alt="Logo UCATECI"
+                src="/Logo-CEB.jpg"
+                alt="Logo CEB-UCATECI"
                 fill
                 sizes="(max-width: 1024px) 10rem, 12rem"
                 className="object-contain"
@@ -167,11 +167,11 @@ export function SiteHeader() {
           <div className="ml-auto flex shrink-0 items-center justify-end gap-1.5 sm:gap-2 xl:gap-2.5">
             <button
               onClick={() => setOpen(true)}
-              aria-label="Buscar en UCATECI"
+              aria-label="Buscar en CEB"
               className="grid h-9 w-9 place-items-center rounded-full border border-input bg-muted/50 text-muted-foreground transition-colors hover:bg-muted md:h-10 md:w-10"
             >
               <Search className="h-4 w-4" aria-hidden="true" />
-              <span className="sr-only">Buscar carreras, servicios</span>
+              <span className="sr-only">Buscar programas, servicios y páginas</span>
             </button>
 
             <AdmissionsWizard>
@@ -356,11 +356,11 @@ export function SiteHeader() {
 
       {/* Command palette */}
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Buscar carreras, servicios, páginas..." />
+        <CommandInput placeholder="Buscar programas, servicios, páginas..." />
         <CommandList>
           <CommandEmpty>No se encontraron resultados.</CommandEmpty>
-          <CommandGroup heading="Carreras">
-            {SEARCH_ITEMS.carreras.map((c) => (
+          <CommandGroup heading="Programas">
+            {SEARCH_ITEMS.programas.map((c) => (
               <CommandItem key={c} onSelect={() => navigate("#oferta")}>
                 <GraduationCap className="h-4 w-4" />
                 <span>{c}</span>

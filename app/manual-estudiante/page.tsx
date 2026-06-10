@@ -7,7 +7,7 @@ export default function ManualEstudiantePage() {
   return (
     <InnerPageLayout 
       title="Manual del Estudiante"
-      subtitle="Tu guía indispensable para navegar el primer año y adaptarte con éxito a la vida universitaria."
+      subtitle="Tu guía indispensable para navegar el primer año y adaptarte con éxito a la vida estudiantil en CEB-UCATECI."
       icon={<GraduationCap className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <div className="flex flex-col items-center justify-center py-12 max-w-4xl mx-auto">
@@ -42,7 +42,7 @@ export default function ManualEstudiantePage() {
               Guía de Nuevo Ingreso
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl mb-12 max-w-2xl font-medium leading-relaxed">
-              Un recurso esencial diseñado especialmente para ti. Contiene información sobre servicios, procesos de matriculación, mapas del campus y consejos invaluables.
+              Un recurso esencial diseñado especialmente para ti en CEB-UCATECI. Contiene información sobre servicios, procesos de matriculación, mapas del centro y consejos invaluables para tu experiencia en Bonao.
             </p>
             
             <motion.a 

@@ -13,6 +13,8 @@ export type HeroSlide = {
   eyebrow: string
   title: string
   subtitle: string
+  highlights?: string[]
+  miniCards?: { label: string; value: string; detail?: string }[]
   cta: { label: string; href: string }
   secondary: { label: string; href: string }
   image: string
@@ -139,6 +141,19 @@ export function HeroCarousel({
             {slide.subtitle}
           </p>
 
+          {slide.highlights?.length ? (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {slide.highlights.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-brand-gold/35 bg-brand-navy/55 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gold shadow-sm shadow-brand-navy/30 backdrop-blur-sm"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          ) : null}
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Button
               asChild
@@ -170,6 +185,21 @@ export function HeroCarousel({
             </Button>
           </div>
         </div>
+
+        {slide.miniCards?.length ? (
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {slide.miniCards.map((card) => (
+              <article
+                key={card.label}
+                className="rounded-2xl border border-brand-cream/10 bg-white/8 p-4 shadow-lg shadow-brand-navy/35 backdrop-blur-md transition-colors hover:border-brand-gold/30 hover:bg-white/10"
+              >
+                <p className="text-[11px] uppercase tracking-[0.22em] text-brand-gold/95">{card.label}</p>
+                <div className="mt-2 text-2xl font-bold text-brand-cream">{card.value}</div>
+                {card.detail ? <p className="mt-1 text-sm text-brand-cream/75">{card.detail}</p> : null}
+              </article>
+            ))}
+          </div>
+        ) : null}
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3" role="tablist" aria-label="Slides destacados">

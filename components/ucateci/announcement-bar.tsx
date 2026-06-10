@@ -4,7 +4,7 @@ const messages = [
   "Admisiones abiertas cuatrimestre mayo-agosto 2026",
   "Convocatoria Fondo de Investigación hasta el 30 de mayo",
   "Jornada de Investigación Científica el 22 de abril",
-  "Nuevos postgrados en Ciencias de la Salud disponibles",
+  "Nuevos talleres y programas de formación disponibles",
   "Becas deportivas y culturales UCATECI 2026",
 ]
 

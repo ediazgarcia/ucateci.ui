@@ -38,8 +38,8 @@ const DATA: Record<
   }
 > = {
   aspirantes: {
-    title: "Bienvenido a tu futuro profesional",
-    description: "Encuentra toda la información para iniciar tu vida universitaria en UCATECI.",
+    title: "Bienvenido a tu experiencia escolar",
+    description: "Encuentra toda la información para iniciar tu proceso en el CEB Bonao.",
     links: [
       {
         icon: FileText,
@@ -49,9 +49,9 @@ const DATA: Record<
       },
       {
         icon: BookOpen,
-        label: "Oferta Académica",
+        label: "Programas del Colegio",
         href: "#oferta",
-        desc: "Conoce nuestras carreras",
+        desc: "Conoce nuestras propuestas educativas",
       },
       {
         icon: CreditCard,
@@ -175,9 +175,9 @@ const DATA: Record<
       },
       {
         icon: GraduationCap,
-        label: "Educación Continua",
-        href: "#postgrado",
-        desc: "Maestrías y diplomados",
+        label: "Experiencia Escolar",
+        href: "#vida",
+        desc: "Actividades, valores y crecimiento integral",
       },
       {
         icon: Users,

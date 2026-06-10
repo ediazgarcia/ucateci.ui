@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button"
 import { AdmissionsWizard } from "./admissions-wizard"
 
 const steps = [
-  "Completa la solicitud en línea",
-  "Presenta tu documentación académica",
-  "Realiza la prueba de admisión POMA",
-  "Recibe tu carta de admisión oficial",
+  "Completa el formulario de interés escolar",
+  "Presenta la documentación requerida para matrícula",
+  "Recibe orientación sobre primaria, secundaria y STEAM",
+  "Confirma tu ingreso al colegio",
 ]
 
 export function AdmissionsCTA() {
@@ -30,13 +30,10 @@ export function AdmissionsCTA() {
                 Admisiones 2026
               </div>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-                Tu camino profesional comienza con un solo paso.
+                Tu proceso de ingreso al colegio empieza aquí.
               </h2>
               <p className="mt-4 text-brand-cream/80 leading-relaxed max-w-lg">
-                Aplica a UCATECI y únete a una comunidad académica con más de 40
-                años formando profesionales íntegros en República Dominicana.
-                Asesoría personalizada, becas por mérito y más de 45 carreras
-                acreditadas por el MESCyT.
+                En CEB Bonao ofrecemos un colegio bilingüe con formación en primaria y secundaria, apoyado en valores cristianos, excelencia académica y el próximo programa STEAM para preparar a nuestros estudiantes para el futuro.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <AdmissionsWizard>
@@ -44,7 +41,7 @@ export function AdmissionsCTA() {
                     size="lg"
                     className="bg-brand-red hover:bg-brand-red/90 text-accent-foreground"
                   >
-                    Iniciar solicitud
+                    Solicitar información
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </AdmissionsWizard>
@@ -53,7 +50,7 @@ export function AdmissionsCTA() {
                   variant="outline"
                   className="border-brand-cream/30 bg-transparent text-brand-cream hover:bg-brand-cream/10 hover:text-brand-gold"
                 >
-                  Agendar visita al campus
+                  Conocer el colegio
                 </Button>
               </div>
             </div>
@@ -81,12 +78,12 @@ export function AdmissionsCTA() {
               <div className="mt-6 pt-2 text-xs text-brand-cream/60">
                 ¿Dudas sobre el proceso?{" "}
                 <a
-                  href="mailto:admisiones@ucateci.edu.do"
+                  href="mailto:info@cebucateci.edu.do"
                   className="font-semibold text-brand-gold hover:underline"
                 >
-                  admisiones@ucateci.edu.do
+                  info@cebucateci.edu.do
                 </a>{" "}
-                · (809) 573-1020 ext. 2100
+                · (809) 123-4567
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ export default function CEBPage() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/">UCATECI</BreadcrumbLink>
+                <BreadcrumbLink href="/">Inicio</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>

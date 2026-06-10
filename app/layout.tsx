@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Open_Sans, Montserrat } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
@@ -22,15 +22,15 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Portal UCATECI — Universidad Católica del Cibao",
+  title: "Portal CEB-UCATECI — Centro Educacional Bonao",
   description:
-    "Portal oficial interactivo de la UCATECI. Acceso a Aula Virtual, Portal de Estudiantes, oferta académica, biblioteca, noticias y servicios universitarios.",
+    "Portal oficial interactivo de la CEB-UCATECI. Acceso a Aula Virtual, Portal de Estudiantes, oferta académica, biblioteca, noticias y servicios.",
   generator: "v0.app",
   keywords: [
-    "UCATECI",
-    "Universidad Católica del Cibao",
-    "Universidad Católica Tecnológica del Cibao",
-    "La Vega",
+    "CEB-UCATECI",
+    "Centro Educacional Bonao", 
+    "ceb.edu.do",
+    "Bonao",
     "República Dominicana",
     "Aula Virtual",
     "Portal Estudiantes",

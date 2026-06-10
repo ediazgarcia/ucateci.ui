@@ -34,10 +34,10 @@ const columns = [
   {
     title: "Académico",
     links: [
-      { label: "Facultades", href: "#oferta" },
-      { label: "Carreras de Grado", href: "#oferta" },
-      { label: "Postgrados", href: "#oferta" },
-      { label: "Educación Continua", href: "#servicios" },
+      { label: "Programas del Colegio", href: "#oferta" },
+      { label: "Nivel Inicial y Primaria", href: "#oferta" },
+      { label: "Secundaria y Bachillerato", href: "#oferta" },
+      { label: "Experiencia Escolar", href: "#servicios" },
       { label: "Calendario Académico", href: "#calendario" },
       { label: "Biblioteca Digital", href: "#recursos" },
     ],
@@ -49,8 +49,8 @@ const columns = [
       { label: "Portal del Estudiante", href: "#acceso" },
       { label: "Correo Institucional", href: "#acceso" },
       { label: "Pagos en Línea", href: "#acceso" },
-      { label: "Bolsa de Empleo", href: "#servicios" },
-      { label: "Clínica Universitaria", href: "#servicios" },
+      { label: "Orientación y Bienestar", href: "#servicios" },
+      { label: "Servicios estudiantiles", href: "#servicios" },
     ],
   },
   {
@@ -152,7 +152,7 @@ export function SiteFooter() {
           <div>
             <h3 className="font-serif text-2xl font-bold text-brand-cream">Comunidad UCATECI</h3>
             <p className="mt-2 max-w-md text-sm text-brand-cream/70">
-              Recibe los últimos comunicados institucionales, noticias de investigación y fechas académicas importantes directamente en tu correo.
+              Recibe los últimos comunicados del colegio, noticias educativas y fechas importantes directamente en tu correo.
             </p>
             <p className="mt-3 text-xs text-brand-cream/55">Te enviaremos únicamente información de valor para tu vida académica.</p>
           </div>
@@ -231,7 +231,7 @@ export function SiteFooter() {
             </div>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-brand-cream/70">
-            Universidad Católica Tecnológica del Cibao. Institución de educación superior dedicada a la búsqueda de la verdad, formando profesionales éticos, con vocación de servicio y compromiso social desde 1983.
+            Colegio CEB Bonao, un espacio educativo integral que forma estudiantes con valores, excelencia académica y sentido de servicio.
           </p>
           <ul className="mt-6 space-y-3 text-sm text-brand-cream/80">
             <li className="flex items-start gap-3">
@@ -293,7 +293,7 @@ export function SiteFooter() {
 
       <div className="relative border-t border-brand-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-brand-cream/60 sm:px-6 md:flex-row lg:px-8">
-          <p>© {new Date().getFullYear()} UCATECI · Universidad Católica Tecnológica del Cibao. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} CEB Bonao · Colegio Educacional Bonao. Todos los derechos reservados.</p>
           <div className="flex flex-wrap items-center gap-5">
             <a href="#contacto" className="hover:text-brand-gold">
               Política de Privacidad

@@ -14,10 +14,10 @@ type Msg = { role: "bot" | "user"; text: string; options?: { label: string; repl
 const INITIAL: Msg[] = [
   {
     role: "bot",
-    text: "Hola, soy UCATI. Puedo orientarte con admisiones, carreras, becas y formas de contacto. Elige una opcion o escribe tu pregunta.",
+    text: "Hola, soy CEB-UCATECI. Puedo orientarte con admisiones, programas del colegio, becas y formas de contacto. Elige una opcion o escribe tu pregunta.",
     options: [
       { label: "Proceso de admision", reply: "admision" },
-      { label: "Ver carreras", reply: "carreras" },
+      { label: "Ver programas", reply: "programas" },
       { label: "Becas y costos", reply: "becas" },
       { label: "Contactar", reply: "contacto" },
     ],
@@ -34,14 +34,14 @@ const RESPONSES: Record<string, Msg> = {
       { label: "Ir al formulario", reply: "formulario" },
     ],
   },
-  carreras: {
+  programas: {
     role: "bot",
     text:
-      "Ofrecemos programas en salud, ingenieria, humanidades y ciencias economicas. Dime el area que mas te interesa y te guio rapido.",
+      "Ofrecemos propuestas educativas para primaria, secundaria, bilingüe, STEAM, liderazgo y desarrollo integral. Dime el enfoque que más te interesa y te guío rápido.",
     options: [
-      { label: "Salud", reply: "salud" },
-      { label: "Ingenieria", reply: "ingenieria" },
-      { label: "Humanidades", reply: "humanidades" },
+      { label: "Bilingüe", reply: "bilingue" },
+      { label: "STEAM", reply: "steam" },
+      { label: "Liderazgo", reply: "liderazgo" },
     ],
   },
   becas: {
@@ -67,20 +67,20 @@ const RESPONSES: Record<string, Msg> = {
       "Normalmente te pediremos acta de nacimiento, record de notas, certificado de pruebas nacionales, fotos y copia de cedula. Si tu caso es especial, un asesor te dira exactamente que falta.",
     options: [{ label: "Volver a admision", reply: "admision" }],
   },
-  salud: {
+  bilingue: {
     role: "bot",
-    text: "En salud ofrecemos Medicina, Odontologia, Enfermeria, Bioanalisis y Terapia Fisica.",
-    options: [{ label: "Ver otras areas", reply: "carreras" }],
+    text: "Nuestro enfoque bilingüe fortalece el idioma, la comunicación y la preparación para el mundo actual.",
+    options: [{ label: "Ver otros enfoques", reply: "programas" }],
   },
-  ingenieria: {
+  steam: {
     role: "bot",
-    text: "En ingenieria puedes explorar Civil, Industrial, Sistemas, Electromecanica y Agronomia.",
-    options: [{ label: "Ver otras areas", reply: "carreras" }],
+    text: "STEAM combina ciencia, tecnología, arte y matemáticas para desarrollar pensamiento crítico y creatividad.",
+    options: [{ label: "Ver otros enfoques", reply: "programas" }],
   },
-  humanidades: {
+  liderazgo: {
     role: "bot",
-    text: "En humanidades puedes estudiar Derecho, Psicologia, Educacion, Comunicacion Social y Teologia.",
-    options: [{ label: "Ver otras areas", reply: "carreras" }],
+    text: "El enfoque de valores y liderazgo impulsa la responsabilidad, la disciplina y la convivencia escolar.",
+    options: [{ label: "Ver otros enfoques", reply: "programas" }],
   },
   "requisitos-becas": {
     role: "bot",
@@ -143,7 +143,7 @@ export function AdmissionsChatbot() {
       ({
         role: "bot",
         text:
-          "No logre identificar tu solicitud. Prueba con palabras como admision, becas, carreras o contacto para ayudarte mejor.",
+          "No logre identificar tu solicitud. Prueba con palabras como admision, becas, programas o contacto para ayudarte mejor.",
         options: [
           { label: "Proceso de admision", reply: "admision" },
           { label: "Becas y costos", reply: "becas" },
@@ -173,7 +173,7 @@ export function AdmissionsChatbot() {
       setStatus({
         tone: "warning",
         title: "Escribe una pregunta o usa una sugerencia.",
-        description: "Por ejemplo: admision, becas, carreras o contacto.",
+        description: "Por ejemplo: admision, becas, programas o contacto.",
       })
       return
     }

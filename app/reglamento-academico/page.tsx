@@ -7,7 +7,7 @@ export default function ReglamentoAcademicoPage() {
   return (
     <InnerPageLayout 
       title="Reglamento Académico"
-      subtitle="Normativas, políticas y procedimientos que rigen la vida académica en nuestra universidad."
+      subtitle="Normativas, políticas y procedimientos que rigen la vida académica en CEB-UCATECI."
       icon={<Scale className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <div className="flex flex-col items-center justify-center py-12 max-w-4xl mx-auto">

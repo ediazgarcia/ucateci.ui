@@ -7,12 +7,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CheckCircle2, ChevronLeft, ChevronRight, GraduationCap, User, BookOpen, Send, Sparkles } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const STEPS = [
   { id: 1, title: "Nivel", icon: GraduationCap },
   { id: 2, title: "Datos", icon: User },
   { id: 3, title: "Programa", icon: BookOpen },
-  { id: 4, title: "Listo", icon: CheckCircle2 },
+  { id: 4, title: "Confirmar", icon: CheckCircle2 },
 ]
 
 export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
@@ -45,8 +46,8 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-brand-navy">¿Qué nivel te interesa?</h3>
-              <p className="text-sm text-muted-foreground">Selecciona el nivel académico al que deseas aplicar.</p>
+              <h3 className="font-serif text-2xl font-semibold text-brand-navy">¿En qué etapa del colegio deseas comenzar?</h3>
+              <p className="text-sm text-muted-foreground">Selecciona el nivel del CEB que quieres explorar para tu hijo o hija.</p>
             </div>
             <RadioGroup
               value={formData.level}
@@ -54,10 +55,10 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
               className="grid gap-4 sm:grid-cols-2"
             >
               {[
-                { id: "grado", label: "Grado", desc: "Licenciaturas e Ingenierías" },
-                { id: "postgrado", label: "Postgrado", desc: "Maestrías y Especialidades" },
-                { id: "tecnico", label: "Técnico Superior", desc: "Carreras cortas de 2 años" },
-                { id: "continua", label: "Educación Continua", desc: "Diplomados y Cursos" },
+                { id: "inicial", label: "Nivel Inicial", desc: "Pre-Kinder a Kinder" },
+                { id: "primaria", label: "Primaria", desc: "1° a 6° grado" },
+                { id: "secundaria", label: "Secundaria", desc: "7° a 8° grado" },
+                { id: "bachillerato", label: "Bachillerato", desc: "9° a 12° grado" },
               ].map((item) => (
                 <div key={item.id}>
                   <RadioGroupItem value={item.id} id={item.id} className="peer sr-only" />
@@ -78,8 +79,8 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-brand-navy">Datos Personales</h3>
-              <p className="text-sm text-muted-foreground">Queremos conocerte mejor.</p>
+              <h3 className="font-serif text-2xl font-semibold text-brand-navy">Datos del estudiante y familia</h3>
+              <p className="text-sm text-muted-foreground">Completa esta información para que nuestro equipo de Admisiones pueda orientarte con el proceso de ingreso.</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
@@ -135,23 +136,23 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
         return (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="space-y-2">
-              <h3 className="font-serif text-2xl font-semibold text-brand-navy">Programa de Interés</h3>
-              <p className="text-sm text-muted-foreground">Elige la carrera o programa que deseas estudiar.</p>
+              <h3 className="font-serif text-2xl font-semibold text-brand-navy">Programa del colegio</h3>
+              <p className="text-sm text-muted-foreground">Elige la propuesta educativa que mejor se adapte a tu hijo o hija.</p>
             </div>
             <div className="space-y-4">
-              <Label>Carrera/Programa</Label>
+              <Label>Programa del colegio</Label>
               <RadioGroup
                 value={formData.program}
                 onValueChange={(val) => setFormData({ ...formData, program: val })}
                 className="grid gap-3"
               >
                 {[
-                  "Medicina",
-                  "Ingeniería de Sistemas",
-                  "Odontología",
-                  "Psicología",
-                  "Administración de Empresas",
-                  "Arquitectura",
+                  "Programa Bilingüe",
+                  "STEAM y Robótica",
+                  "Arte, Música y Deporte",
+                  "Valores y Liderazgo",
+                  "Primaria Integral",
+                  "Secundaria de Excelencia",
                 ].map((prog) => (
                   <div key={prog} className="flex items-center space-x-3 space-y-0 rounded-lg border p-4 shadow-sm hover:bg-muted/50 transition-colors cursor-pointer" onClick={() => setFormData({ ...formData, program: prog })}>
                     <RadioGroupItem value={prog} id={prog} />
@@ -169,9 +170,9 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
               <Sparkles className="h-10 w-10 text-brand-gold" />
             </div>
             <div className="space-y-2">
-              <h3 className="font-serif text-3xl font-semibold text-brand-navy">¡Casi listo, {formData.firstName || "futuro estudiante"}!</h3>
+              <h3 className="font-serif text-3xl font-semibold text-brand-navy">¡Casi está, {formData.firstName || "familia CEB"}!</h3>
               <p className="text-muted-foreground max-w-sm mx-auto">
-                Hemos preparado tu perfil para <strong>{formData.program || "el programa seleccionado"}</strong>. Confirma para enviar tu solicitud.
+                Hemos registrado tu interés para <strong>{formData.program || "la propuesta educativa del colegio"}</strong>. Nuestro equipo de Admisiones te contactará para compartir información de matrícula, ingreso y acompañamiento escolar.
               </p>
             </div>
             <div className="bg-muted p-4 rounded-xl text-left text-sm mt-6">
@@ -198,12 +199,12 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-background">
+      <DialogContent className="w-[calc(100vw-1rem)] max-w-[680px] h-[100dvh] max-h-[100dvh] sm:h-auto sm:max-h-[92vh] p-0 overflow-hidden bg-background rounded-none sm:rounded-2xl flex flex-col">
         <div className="hidden sm:flex flex-col bg-brand-navy text-brand-cream p-6 pb-8 border-b border-brand-cream/10 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-red/20 blur-3xl" />
-          <DialogTitle className="font-serif text-2xl font-bold tracking-tight relative z-10">Solicitud de Admisión</DialogTitle>
+          <DialogTitle className="font-serif text-2xl font-bold tracking-tight relative z-10">Admisiones del Colegio</DialogTitle>
           <DialogDescription className="text-brand-cream/70 relative z-10">
-            Únete a la familia UCATECI. Completa los pasos a continuación.
+            Descubre cómo ingresar a CEB Bonao, desde primaria y secundaria hasta nuestro enfoque STEAM bilingüe.
           </DialogDescription>
           
           <div className="mt-8 relative z-10">
@@ -241,13 +242,18 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Header */}
         <div className="sm:hidden p-6 pb-2">
-          <DialogTitle className="font-serif text-xl font-bold text-brand-navy">Solicitud de Admisión</DialogTitle>
+          <DialogTitle className="font-serif text-xl font-bold text-brand-navy">Admisiones del Colegio</DialogTitle>
           <div className="flex items-center gap-2 mt-2">
             <span className="text-xs font-semibold text-brand-red">Paso {step} de 4</span>
             <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-brand-red transition-all duration-300" 
-                style={{ width: `${(step / 4) * 100}%` }}
+              <div
+                className={cn(
+                  "h-full bg-brand-red transition-all duration-300",
+                  step === 1 && "w-[25%]",
+                  step === 2 && "w-[50%]",
+                  step === 3 && "w-[75%]",
+                  step === 4 && "w-full"
+                )}
               />
             </div>
           </div>
@@ -281,7 +287,7 @@ export function AdmissionsWizard({ children }: { children: React.ReactNode }) {
             </Button>
           ) : (
             <Button onClick={() => setOpen(false)} className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 min-w-[120px] font-semibold">
-              <Send className="mr-2 h-4 w-4" /> Enviar Solicitud
+              <Send className="mr-2 h-4 w-4" /> Solicitar Información
             </Button>
           )}
         </div>

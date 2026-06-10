@@ -50,9 +50,9 @@ export function CampusFooter({ campusId }: { campusId: "ceb" | "constanza" }) {
               {isCEB ? (
                 <>
                   <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-white p-1">
-                    <Image src="/Logo-UCATECI.png" alt="Logo" fill className="object-contain" />
+                    <Image src="/Logo-CEB.jpg" alt="Logo CEB Bonao" fill className="object-contain" />
                   </div>
-                  <div className="font-bold text-xl text-white">CEBUCATECI</div>
+                  <div className="font-bold text-xl text-white">CEB Bonao</div>
                 </>
               ) : (
                 <>
@@ -144,7 +144,7 @@ export function CampusFooter({ campusId }: { campusId: "ceb" | "constanza" }) {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <p>© {new Date().getFullYear()} UCATECI - {campus.name}. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Centro Educacional Bonao. Todos los derechos reservados.</p>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-white transition-colors">Políticas de Privacidad</Link>
             <Link href="#" className="hover:text-white transition-colors">Términos de Uso</Link>

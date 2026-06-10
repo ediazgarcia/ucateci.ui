@@ -7,35 +7,53 @@ const TOUR_VIDEO_EMBED_URL =
 
 const slides: HeroSlide[] = [
   {
-    eyebrow: "Admisiones 2026",
-    title: "Tu futuro académico empieza en UCATECI",
+    eyebrow: "CEB-UCATECI · Bonao",
+    title: "Un colegio que forma líderes con valores, excelencia y propósito",
     subtitle:
-      "Más de 40 años formando profesionales íntegros en La Vega. Elige entre más de 45 carreras acreditadas por el MESCyT con formación en valores, investigación y compromiso social.",
-    cta: { label: "Solicitar admisión", href: "#admisiones" },
-    secondary: { label: "Explorar carreras", href: "#oferta" },
+      "Desde inicial hasta bachillerato, vivimos una experiencia educativa cercana, moderna y segura, pensada para acompañar el crecimiento de cada estudiante y su familia.",
+    highlights: ["Bilingüe", "STEAM", "Valores y liderazgo"],
+    miniCards: [
+      { label: "Niveles", value: "4", detail: "Inicial, primaria, secundaria y bachillerato" },
+      { label: "Enfoque", value: "STEAM", detail: "Tecnología, ciencia, creatividad y pensamiento crítico" },
+      { label: "Experiencia", value: "Integral", detail: "Valores, arte, deporte y acompañamiento personal" },
+    ],
+    cta: { label: "Solicitar información", href: "#admisiones" },
+    secondary: { label: "Explorar programas", href: "#oferta" },
     video: TOUR_VIDEO_EMBED_URL,
     image: "/ucateci/campus-aerial.jpg",
   },
   {
     eyebrow: "Formación integral",
-    title: "Más que estudiar, es vivir la universidad",
+    title: "Aprende, crea y crece en un entorno inspirador",
     subtitle:
-      "Deportes, pastoral, arte, voluntariado y una comunidad educativa que te acompaña en cada paso de tu formación profesional, humana y espiritual.",
-    cta: { label: "Explorar campus", href: "#vida" },
+      "Tecnología, arte, deporte, lectura y convivencia escolar se unen para desarrollar habilidades, confianza y una sólida formación académica.",
+    highlights: ["Arte y deporte", "Tecnología", "Acompañamiento escolar"],
+    miniCards: [
+      { label: "Programas", value: "6", detail: "Propuestas educativas para cada etapa del colegio" },
+      { label: "Metodología", value: "Activa", detail: "Aprendizaje práctico, creativo y significativo" },
+      { label: "Apoyo", value: "Personalizado", detail: "Orientación y acompañamiento a cada estudiante" },
+    ],
+    cta: { label: "Ver programas", href: "#oferta" },
     secondary: { label: "Tour virtual", href: "#tour" },
     image: "/ucateci/students-campus.jpg",
   },
   {
-    eyebrow: "Investigación",
-    title: "Conocimiento con impacto social y regional",
+    eyebrow: "Comunidad CEB",
+    title: "Una educación con impacto en Bonao y en todo el Cibao",
     subtitle:
-      "Nuestros centros de investigación generan soluciones para la salud, el desarrollo económico y la educación en República Dominicana. Ciencia al servicio del bien común.",
-    cta: { label: "Conocer investigación", href: "#investigacion" },
-    secondary: { label: "Publicaciones", href: "#investigacion" },
+      "Ciencia, cultura, pastoral y servicio comunitario fortalecen a nuestros estudiantes para que sean responsables, preparados y comprometidos con su entorno.",
+    highlights: ["Servicio comunitario", "Pastoral", "Innovación educativa"],
+    miniCards: [
+      { label: "Comunidad", value: "CEB", detail: "Familias, docentes y estudiantes unidos por valores" },
+      { label: "Impacto", value: "Local", detail: "Formación con propósito para Bonao y el Cibao" },
+      { label: "Futuro", value: "Claro", detail: "Preparación para seguir creciendo con confianza" },
+    ],
+    cta: { label: "Conocer más", href: "#noticias" },
+    secondary: { label: "Contáctanos", href: "#contacto" },
     image: "/ucateci/research-lab.jpg",
   },
 ]
 
 export function HeroSection() {
-  return <HeroCarousel ariaLabel="Destacados UCATECI" slides={slides} accentLabel="Portal académico institucional" />
+  return <HeroCarousel ariaLabel="Destacados CEB-UCATECI" slides={slides} accentLabel="Portal académico CEB-UCATECI" />
 }

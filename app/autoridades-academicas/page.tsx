@@ -4,7 +4,7 @@ import { Users, GraduationCap, Building, Star, Award, BookOpen } from "lucide-re
 import { motion } from "framer-motion"
 
 const autoridades = [
-  { nombre: "S. E. R. Mons. Carlos Tomás Morel Diplán", cargo: "Rector de la UCATECI", destacado: true, icon: <Star /> },
+  { nombre: "S. E. R. Mons. Carlos Tomás Morel Diplán", cargo: "Rector de CEB-UCATECI", destacado: true, icon: <Star /> },
   { nombre: "Rvdo. P. Dr. Francisco Antonio Jiménez", cargo: "Vicerrector ejecutivo", destacado: true, icon: <Award /> },
   { nombre: "Sr. Inocencio Then Martínez, MAG.", cargo: "Vicerrector de Asuntos Académicos de Grado", icon: <GraduationCap /> },
   { nombre: "Sr. Eleucadio Javier Castillo Coste, MAG.", cargo: "Vicerrector de Asuntos Financieros y Administrativos", icon: <Building /> },
@@ -48,7 +48,7 @@ export default function AutoridadesAcademicasPage() {
   return (
     <InnerPageLayout 
       title="Autoridades Académicas"
-      subtitle="Conozca el equipo directivo que guía los pasos de nuestra institución hacia la excelencia."
+      subtitle="Conozca el equipo directivo que guía los pasos de CEB-UCATECI hacia la excelencia en Bonao."
       icon={<Users className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <motion.div 

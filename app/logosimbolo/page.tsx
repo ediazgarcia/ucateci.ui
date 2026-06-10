@@ -32,7 +32,7 @@ export default function LogosimboloPage() {
   return (
     <InnerPageLayout 
       title="Identidad Visual"
-      subtitle="El logosímbolo es la representación gráfica central de nuestra esencia y valores."
+      subtitle="El logosímbolo es la representación gráfica central de la esencia y los valores de CEB-UCATECI."
       icon={<Palette className="w-10 h-10 text-brand-navy dark:text-brand-gold" />}
     >
       <div className="flex flex-col lg:flex-row gap-16 items-center my-12">
@@ -73,7 +73,7 @@ export default function LogosimboloPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl font-bold text-brand-navy dark:text-white m-0 mb-6">
-              El Emblema de UCATECI
+              El Emblema de CEB-UCATECI
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
               En el año 2015, como parte de la Actualización Simbólica de la Institución, nuestro logo fue rediseñado con el fin de proyectar una imagen más moderna y acorde a nuestra naturaleza.

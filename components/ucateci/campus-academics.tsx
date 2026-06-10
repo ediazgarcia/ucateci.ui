@@ -14,18 +14,18 @@ export function CampusAcademics({ campusId }: CampusAcademicsProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Oferta Académica</span>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Ofertas Académicas del Colegio</span>
           <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl lg:text-5xl text-balance">
-            {academics.title}
+            Un colegio que forma con excelencia, valores y futuro
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-            {academics.description}
+            En CEB Bonao ofrecemos una educación integral, cercana y moderna para cada etapa del aprendizaje, desde el nivel inicial hasta el bachillerato.
           </p>
         </div>
 
         {/* Educational Levels */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Niveles Académicos</h3>
+          <h3 className="text-2xl font-bold text-primary text-center mb-8">Niveles del Colegio</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {academics.levels.map((level, index) => (
               <div key={index} className="bg-background p-6 rounded-lg border hover:shadow-lg transition-shadow">
@@ -42,7 +42,7 @@ export function CampusAcademics({ campusId }: CampusAcademicsProps) {
 
         {/* Specializations */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Especializaciones Estratégicas</h3>
+          <h3 className="text-2xl font-bold text-primary text-center mb-8">Áreas de Formación</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {academics.specializations.map((spec, index) => (
               <div key={index} className="bg-background p-6 rounded-lg border hover:shadow-lg transition-shadow text-center md:text-left">
@@ -58,7 +58,7 @@ export function CampusAcademics({ campusId }: CampusAcademicsProps) {
 
         {/* Programs */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">Programas Destacados</h3>
+          <h3 className="text-2xl font-bold text-primary text-center mb-8">Programas del Colegio</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {academics.programs.map((program, index) => (
               <div key={index} className="bg-background p-8 rounded-lg border hover:shadow-lg transition-shadow">
@@ -96,9 +96,9 @@ export function CampusAcademics({ campusId }: CampusAcademicsProps) {
           </div>
         ) : (
           <div className="text-center bg-primary text-white p-8 rounded-lg mt-8">
-            <h3 className="text-2xl font-bold mb-4">¿Listo para unirte a nuestra comunidad educativa?</h3>
+            <h3 className="text-2xl font-bold mb-4">¿Quieres conocer más de nuestra comunidad escolar?</h3>
             <p className="mb-6 text-primary-foreground/90">
-              Descubre cómo el {campus.shortName} puede transformar tu futuro.
+              Descubre cómo el CEB Bonao acompaña a cada estudiante con una educación integral, cercana y preparada para el futuro.
             </p>
             <a href={`/campus/${campus.id}#contacto`} className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Solicitar Información

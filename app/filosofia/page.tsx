@@ -27,7 +27,7 @@ export default function FilosofiaPage() {
   return (
     <InnerPageLayout 
       title="Filosofía Institucional" 
-      subtitle="Conozca los principios que rigen nuestro quehacer académico y social."
+      subtitle="Conozca los principios que rigen el quehacer académico y social de CEB-UCATECI en Bonao."
       icon={<Heart className="w-10 h-10 text-brand-red dark:text-brand-gold" />}
     >
       <motion.div 
@@ -40,7 +40,7 @@ export default function FilosofiaPage() {
           <Sparkles className="w-40 h-40" />
         </div>
         <p className="text-2xl text-brand-navy-deep dark:text-zinc-300 font-light leading-relaxed relative z-10 m-0">
-          La filosofía de la <span className="font-semibold text-brand-navy dark:text-white">Universidad Católica del Cibao (UCATECI)</span>, está inspirada en el humanismo-cristiano, la búsqueda de la verdad científica y el fomento de los valores, en procura de la dignidad humana y la sostenibilidad.
+          La filosofía de <span className="font-semibold text-brand-navy dark:text-white">CEB-UCATECI — Centro Educacional Bonao</span> está inspirada en el humanismo-cristiano, la búsqueda de la verdad científica y el fomento de los valores, en procura de la dignidad humana y la sostenibilidad.
         </p>
       </motion.div>
 

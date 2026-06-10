@@ -40,6 +40,8 @@ export type CampusSlide = {
   eyebrow: string
   title: string
   subtitle: string
+  highlights?: string[]
+  miniCards?: { label: string; value: string; detail?: string }[]
   cta: { label: string; href: string }
   secondary: { label: string; href: string }
   video?: string
@@ -245,7 +247,13 @@ export const CEB_DATA: CampusData = {
       title: "Excelencia académica desde 1971",
       subtitle:
         "Formamos líderes con carácter y principios. Educación bilingüe integral que combina valores cristianos, innovación pedagógica y desarrollo humano completo.",
-      cta: { label: "Solicitar admisión", href: "/campus/ceb#contacto" },
+      highlights: ["Inicial a bachillerato", "Bilingüe", "Valores y liderazgo"],
+      miniCards: [
+        { label: "Niveles", value: "4", detail: "Educación inicial, primaria, secundaria y bachillerato" },
+        { label: "Enfoque", value: "STEAM", detail: "Tecnología, creatividad y pensamiento crítico" },
+        { label: "Formación", value: "Integral", detail: "Valores, arte, deporte y acompañamiento escolar" },
+      ],
+      cta: { label: "Solicitar información", href: "/campus/ceb#contacto" },
       secondary: { label: "Conocer más", href: "/campus/ceb#acerca" },
       video: "https://www.youtube.com/embed/uQwSIVamo98?autoplay=1&mute=1&loop=1&playlist=uQwSIVamo98&controls=0&rel=0&playsinline=1",
       image: "/ucateci/students-campus.jpg",
@@ -255,6 +263,12 @@ export const CEB_DATA: CampusData = {
       title: "Preparados para el mundo global",
       subtitle:
         "Desde nivel inicial hasta bachillerato, nuestros estudiantes dominan el español y el inglés, preparándose para universidades de prestigio internacional.",
+      highlights: ["STEAM", "Inglés", "Preparación integral"],
+      miniCards: [
+        { label: "Programas", value: "6", detail: "Propuestas educativas para cada etapa del colegio" },
+        { label: "Idiomas", value: "Bilingüe", detail: "Fortalecimiento de comunicación y confianza" },
+        { label: "Acompañamiento", value: "Personalizado", detail: "Orientación y seguimiento cercano a cada estudiante" },
+      ],
       cta: { label: "Ver programas", href: "/campus/ceb#academics" },
       secondary: { label: "Instalaciones", href: "/campus/ceb#vida" },
       image: "/ucateci/library.jpg",
@@ -264,77 +278,83 @@ export const CEB_DATA: CampusData = {
       title: "Formación integral con propósito",
       subtitle:
         "Más que conocimientos, formamos personas íntegras, responsables y comprometidas con su comunidad. Una educación que transforma vidas.",
+      highlights: ["Pastoral", "Deporte y arte", "Servicio comunitario"],
+      miniCards: [
+        { label: "Valores", value: "Cristianos", detail: "Educación con principios, respeto y servicio" },
+        { label: "Vida", value: "Activa", detail: "Deportes, arte, lectura y convivencia escolar" },
+        { label: "Impacto", value: "Comunitario", detail: "Estudiantes comprometidos con su entorno" },
+      ],
       cta: { label: "Nuestra misión", href: "/campus/ceb#acerca" },
       secondary: { label: "Admisiones", href: "/campus/ceb#contacto" },
       image: "/ucateci/campus-aerial.jpg",
     },
   ],
   academics: {
-    title: "Educación de Excelencia",
-    description: "Desde nivel inicial hasta bachillerato, ofrecemos una educación escolar integral que prepara a nuestros estudiantes para los desafíos universitarios y de la vida.",
+    title: "Ofertas Académicas del CEB Bonao",
+    description: "Una propuesta integral para estudiantes de nivel inicial, primaria, secundaria y bachillerato, con enfoque en excelencia académica, valores cristianos, innovación y preparación para el mundo actual.",
     levels: [
       {
         level: "Nivel Inicial",
         grades: "Pre-Kinder a Kinder",
-        description: "Fundamentos básicos y desarrollo de habilidades sociales",
+        description: "Desarrollo socioemocional, lenguaje y pensamiento creativo desde los primeros años.",
         icon: Heart,
       },
       {
         level: "Primaria",
         grades: "1° a 6° grado",
-        description: "Educación básica integral con enfoque bilingüe",
+        description: "Base sólida en matemáticas, lengua, ciencias y habilidades para aprender con confianza.",
         icon: BookOpen,
       },
       {
         level: "Secundaria",
         grades: "7° a 8° grado",
-        description: "Preparación académica avanzada y desarrollo de pensamiento crítico",
+        description: "Formación académica más profunda, pensamiento crítico y preparación para la adolescencia.",
         icon: GraduationCap,
       },
       {
         level: "Bachillerato",
         grades: "9° a 12° grado",
-        description: "Formación pre-universitaria con especializaciones",
+        description: "Preparación preuniversitaria con orientación a la excelencia, liderazgo y continuidad académica.",
         icon: Award,
       },
     ],
     specializations: [
       {
+        title: "STEAM y Robótica",
+        icon: Cpu,
+        description: "Programación, pensamiento computacional, ciencia y creatividad para resolver problemas del mundo real.",
+      },
+      {
         title: "Ciencias y Matemáticas",
         icon: Calculator,
-        description: "Preparación para carreras en ingeniería, medicina y ciencias puras",
+        description: "Desarrollo de rigor académico para carreras en ingeniería, medicina y tecnología.",
       },
       {
-        title: "Humanidades",
-        icon: BookOpen,
-        description: "Desarrollo de pensamiento crítico y habilidades comunicativas",
+        title: "Inglés y Comunicación",
+        icon: Globe2,
+        description: "Fortalecimiento del idioma inglés, expresión oral y habilidades comunicativas globales.",
       },
       {
-        title: "Arte y Música",
+        title: "Arte, Música y Deporte",
         icon: Palette,
-        description: "Expresión artística y desarrollo de talento creativo",
-      },
-      {
-        title: "Educación Física",
-        icon: Trophy,
-        description: "Desarrollo físico y valores deportivos",
+        description: "Expresión creativa, liderazgo y bienestar integral a través del arte y la actividad física.",
       },
     ],
     programs: [
       {
+        title: "Programa STEAM",
+        description: "Nueva propuesta de innovación que integra ciencia, tecnología, ingeniería, arte y matemáticas en el aprendizaje diario.",
+        features: ["Pensamiento computacional", "Robótica educativa", "Proyectos creativos y experimentales", "Competencias para el futuro"],
+      },
+      {
         title: "Programa Bilingüe",
-        description: "Inmersión completa en inglés desde nivel inicial",
-        features: ["Profesores nativos", "Materiales certificados", "Exámenes internacionales"],
+        description: "Inmersión progresiva en inglés con preparación para un entorno global.",
+        features: ["Clases con enfoque comunicativo", "Materiales certificados", "Desarrollo de confianza y fluidez"],
       },
       {
-        title: "Programa de Valores",
-        description: "Formación cristiana integral",
-        features: ["Capilla semanal", "Servicio comunitario", "Ética y moral"],
-      },
-      {
-        title: "Programa Tecnológico",
-        description: "Incorporación de tecnología en el aprendizaje",
-        features: ["Aula digital", "Robótica educativa", "Plataformas virtuales"],
+        title: "Programa de Valores y Liderazgo",
+        description: "Formación integral basada en principios cristianos, responsabilidad y servicio comunitario.",
+        features: ["Formación ética y espiritual", "Servicio comunitario", "Liderazgo estudiantil"],
       },
     ],
   }
@@ -502,7 +522,8 @@ export const CONSTANZA_DATA: CampusData = {
       title: "Educación sostenible para el desarrollo",
       subtitle:
         "Centro de educación superior que impulsa iniciativas en agricultura, gestión del agua, ambiente y agroecoturismo. Creemos en Constanza, en el valor de su gente y la riqueza de su tierra.",
-      cta: { label: "Solicitar admisión", href: "/campus/constanza#contacto" },
+      highlights: ["Agricultura", "Ambiente", "Innovación aplicada"],
+      cta: { label: "Solicitar información", href: "/campus/constanza#contacto" },
       secondary: { label: "Conocer más", href: "/campus/constanza#acerca" },
       video: "https://www.youtube.com/embed/BiNRCwijXew?autoplay=1&mute=1&loop=1&playlist=BiNRCwijXew&controls=0&rel=0&playsinline=1",
       image: "/ucateci/campus-aerial.jpg",
@@ -512,6 +533,7 @@ export const CONSTANZA_DATA: CampusData = {
       title: "Desarrollo sostenible en cuatro ámbitos",
       subtitle:
         "Nuestros programas académicos están diseñados para potenciar el crecimiento de Constanza en agricultura sostenible, gestión eficiente del agua, conservación ambiental y agroecoturismo.",
+      highlights: ["Agroecoturismo", "Gestión del agua", "Investigación aplicada"],
       cta: { label: "Ver programas", href: "/campus/constanza#academics" },
       secondary: { label: "Instalaciones", href: "/campus/constanza#vida" },
       image: "/ucateci/research-lab.jpg",
@@ -521,6 +543,7 @@ export const CONSTANZA_DATA: CampusData = {
       title: "La principal vía para asegurar el desarrollo",
       subtitle:
         "La educación es la principal vía para asegurar el desarrollo de los pueblos. Formamos profesionales comprometidos con el progreso sostenible de Constanza y de toda la nación.",
+      highlights: ["Compromiso social", "Investigación", "Desarrollo regional"],
       cta: { label: "Nuestra misión", href: "/campus/constanza#acerca" },
       secondary: { label: "Admisiones", href: "/campus/constanza#contacto" },
       image: "/ucateci/student-life.jpg",

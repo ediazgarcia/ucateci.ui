@@ -84,7 +84,7 @@ export function CampusHeader({ campusId }: { campusId: "ceb" | "constanza" }) {
             </div>
             <div className="flex items-center space-x-2">
               <Link href="/" className="hover:text-primary-foreground/80 transition-colors">
-                ← Volver a UCATECI
+                ← Volver al inicio
               </Link>
             </div>
           </div>
@@ -102,9 +102,9 @@ export function CampusHeader({ campusId }: { campusId: "ceb" | "constanza" }) {
             {isCEB ? (
               <>
                 <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-muted/20 bg-white shadow-sm">
-                  <Image src="/Logo-UCATECI.png" alt="Logo UCATECI" fill className="object-contain" />
+                  <Image src="/Logo-CEB.jpg" alt="Logo CEB Bonao" fill className="object-contain" />
                 </div>
-                <h1 className="text-lg font-semibold text-primary sm:text-xl">CEBUCATECI</h1>
+                <h1 className="text-lg font-semibold text-primary sm:text-xl">CEB Bonao</h1>
               </>
             ) : (
               <div className="flex items-center space-x-2">
@@ -149,7 +149,7 @@ export function CampusHeader({ campusId }: { campusId: "ceb" | "constanza" }) {
             <button
               onClick={() => setOpen(true)}
               aria-label={`Buscar en ${shortName}`}
-              className="grid h-9 w-9 place-items-center rounded-full border border-input bg-muted/50 text-muted-foreground transition-colors hover:bg-muted md:h-10 md:w-10"
+              className="grid h-9 w-9 place-items-center rounded-full border border-primary/15 bg-primary/5 text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary md:h-10 md:w-10"
             >
               <Search className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -157,15 +157,21 @@ export function CampusHeader({ campusId }: { campusId: "ceb" | "constanza" }) {
             <AdmissionsWizard>
               <Button
                 size="sm"
-                className="hidden bg-primary text-primary-foreground hover:bg-primary/90 md:inline-flex"
+                className="hidden rounded-full bg-primary px-4 text-primary-foreground shadow-sm shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:inline-flex"
               >
+                <span className="mr-2 text-[11px] uppercase tracking-[0.2em]">Ingresar</span>
                 Admisiones
               </Button>
             </AdmissionsWizard>
 
-            <Button asChild size="sm" variant="outline" className="hidden md:inline-flex bg-transparent">
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="hidden rounded-full border-primary/20 bg-background/90 text-primary shadow-sm transition-all hover:-translate-y-0.5 hover:bg-primary/5 hover:text-primary md:inline-flex"
+            >
               <Link href={`/campus/${id}#acceso`}>
-                <LogIn className="h-3.5 w-3.5 mr-2" />
+                <LogIn className="mr-2 h-3.5 w-3.5" />
                 <span>Portal</span>
               </Link>
             </Button>

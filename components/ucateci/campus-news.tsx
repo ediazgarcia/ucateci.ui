@@ -57,8 +57,8 @@ export function CampusNews({ campusId }: { campusId: "ceb" | "constanza" }) {
       date: "10 Abr 2026",
     },
     {
-      title: "Apertura de inscripciones para postgrado",
-      excerpt: "Conoce los requisitos para nuestra nueva Maestría en Gestión Sostenible de Recursos Hídricos.",
+      title: "Apertura de inscripciones para programas de formación",
+      excerpt: "Conoce los requisitos para nuestros nuevos talleres y experiencias de aprendizaje en Constanza.",
       category: "Avisos" as Category,
       date: "02 Abr 2026",
     },
